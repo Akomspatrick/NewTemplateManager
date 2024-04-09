@@ -1,7 +1,6 @@
 using NewTemplateManager.Api;
 using NewTemplateManager.Application;
 using NewTemplateManager.Infrastructure;
-using NewTemplateManager.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -10,24 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 {
     //builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-    // Add services to the container.
     builder.Services.AddControllers();
-    // if I want to use Filters fr error handling
-    //builder.Services.AddControllers(option=> option.Filters.Add<ErrorHandlingFilterAttribute>());
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                      .ReadFrom.Configuration(hostingContext.Configuration)
                      .Enrich.FromLogContext()
-                   //  .MinimumLevel.Information()
+                     //  .MinimumLevel.Information()
                      .WriteTo.Console());
 
     builder.Services.AddEndpointsApiExplorer();
-    //builder.Services.AddSwaggerGen();
-    builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "NewTemplateManager.Api", Version = "v7" }));
-    //builder.Services.AddDbContext<NewTemplateManagerDbContext>(options =>
-    //{
-    //    options.UseMySql(builder.Configuration.GetConnectionString("constr"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("constr")));
-    //});
+
+#if EnableSwaggerSupport
+      builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "NewTemplateManager.Api", Version = "v7" }));
+#endif
+
     builder.Services.AddAPIServices(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -40,8 +34,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    #if EnableSwaggerSupport
     app.UseSwagger();
     app.UseSwaggerUI();
+    #endif
 }
 app.UseSerilogRequestLogging();
 app.UseCors(builder =>
@@ -50,11 +46,6 @@ app.UseCors(builder =>
            .AllowAnyMethod()
            .AllowAnyHeader();
 });
-// if i want to use middleware for error handling
-//app.UseMiddleware<ErrorHandlingMiddleware>();
-//if I want to use the error handling controller
-//app.UseExceptionHandler("/error");
-// this method  for the global exception handler ia same as the controllr style
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
@@ -100,6 +91,6 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-   // await TrySeedData.EnsureUsers(app);
+    // await TrySeedData.EnsureUsers(app);
 }
 app.Run();

@@ -19,6 +19,7 @@
 	<ItemGroup>
 	  <Reference Include="CodeGeneratorAttributesLibrary">
 	    <HintPath>..\..\..\SolutionCodeGenerator\src\CodeGeneratorAttributesLibrary\bin\Debug\net8.0\CodeGeneratorAttributesLibrary.dll</HintPath>
+	    <Private>True</Private>
 	  </Reference>
 	</ItemGroup>
 

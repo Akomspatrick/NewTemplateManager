@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Oladeji Akomolafe",
   "classifications": [ "Solution" ],
-  "name": "Akoms.CleanSolution",
+  "name": "Akoms Clean Arch Solution",
   "shortName": "akomscleansolution",
   "defaultName": "AkomsCleanArch.Templates.Sol",
   "identity": "AkomsCleanArch.Templates.Sol",
@@ -22,12 +22,18 @@
       "description": "The target framework for the project.",
       "datatype": "choice",
       "choices": [
+
         {
           "choice": "net8.0",
           "description": "Target netcoreapp8.0"
+        },
+        {
+          "choice": "net9.0",
+          "description": "Target netcoreapp9.0"
         }
+
       ],
-      "replaces": "net8.0",
+      "replaces": "{Targetnet8.0}",
       "defaultValue": "net8.0"
     },
     "HttpPort": {
@@ -71,6 +77,38 @@
         "fallbackVariableName": "HttpsPortGenerated"
       },
       "replaces": "44350"
+    },
+    "EnableSwaggerSupport": {
+      "datatype": "bool",
+      "defaultValue": true,
+      "description": "Enable Swagger UI and Swagger JSON endpoints.",
+      "type": "parameter"
+    },
+    "IncludeGitFolder": {
+      "datatype": "bool",
+      "defaultValue": false,
+      "description": "Include a .gitignore file in the project.",
+      "type": "parameter"
     }
-  }
+  },
+  "sources": [
+{
+      "modifiers": [
+        {
+          "condition": "(!IncludeGitFolder!)",
+          "exclude": [
+            ".git/**",
+            ".gitignore",
+            "src/.git",
+            "src/.gitignore",
+            ".vs/**",
+".template.config/**"
+
+          ]
+        }
+          ]
+        }
+      ]
+    }
+  ]
 }

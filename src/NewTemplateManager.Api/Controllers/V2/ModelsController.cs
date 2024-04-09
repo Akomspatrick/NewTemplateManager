@@ -1,18 +1,11 @@
 ﻿using Asp.Versioning;
 using NewTemplateManager.Api.Extensions;
-using NewTemplateManager.Api.Extentions;
 using NewTemplateManager.Application.CQRS.Model.Commands;
 using NewTemplateManager.Application.CQRS.Model.Queries;
 using NewTemplateManager.Contracts.RequestDTO.V1;
-using NewTemplateManager.Contracts.ResponseDTO;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
-using NewTemplateManager.Domain.Errors;
-using LanguageExt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RMCLinkNET;
-using System.Linq;
-using System.Threading;
 namespace NewTemplateManager.Api.Controllers.V2
 {
     [ApiVersion(2)]

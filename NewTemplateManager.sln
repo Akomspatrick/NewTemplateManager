@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BE944756
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpRequests", "HttpRequests", "{7D7801B9-E8DA-49BE-BE28-D799F15C5EDB}"
 	ProjectSection(SolutionItems) = preProject
-		CreateModelType.http = CreateModelType.http
+		Requests.http = Requests.http
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postmancollectionsaved", "postmancollectionsaved", "{F6CF5582-CE71-4E2C-9647-E338E4AF3281}"
@@ -46,11 +46,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewTemplateManager.Infrastructure.Tests", "tests\NewTemplateManager.Infrastructure.Tests\NewTemplateManager.Infrastructure.Tests.csproj", "{691DF864-142D-4767-869C-B0AEEAFDF0C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewTemplateManager.Integration.Tests", "tests\NewTemplateManager.Integration.Tests\NewTemplateManager.Integration.Tests.csproj", "{09CFB74C-9182-47D3-8A8C-8E95609E3BB8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".templates.config", ".templates.config", "{0488DEF1-40EC-4180-BC12-EED7C3E09A0D}"
-	ProjectSection(SolutionItems) = preProject
-		.template.config\template.json = .template.config\template.json
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
