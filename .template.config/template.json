@@ -95,14 +95,16 @@
 {
       "modifiers": [
         {
-          "condition": "(!IncludeGitFolder!)",
+          "condition": "(!IncludeGitFolder)",
           "exclude": [
             ".git/**",
             ".gitignore",
             "src/.git",
             "src/.gitignore",
             ".vs/**",
-".template.config/**"
+            ".template.config/**",
+            ".template.config\template.json"
+
 
           ]
         }
