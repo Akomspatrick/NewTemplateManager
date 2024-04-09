@@ -1,0 +1,20 @@
+1.To Remove git from a project
+	rm -rf .git
+
+2. Check the repo origin
+
+   git remote -v
+   
+3. To a git to an existion solution ( after creating the repo online)
+now you can init your repository with
+
+
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Akomspatrick/NewTemplateManager.git
+git push -u origin main
+
+4. To add Git ignore to a dotnet solution
+ dotnet new gitignore

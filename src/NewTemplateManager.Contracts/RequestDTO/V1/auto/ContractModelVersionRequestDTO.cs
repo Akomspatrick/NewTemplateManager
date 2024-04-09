@@ -1,0 +1,9 @@
+namespace NewTemplateManager.Contracts.RequestDTO.V1.auto
+{
+    public record ModelVersionGetRequestByGuidDTO(Guid guid);
+    public record ModelVersionGetRequestByIdDTO(object Value);
+    public record ModelVersionGetRequestDTO(object Value);
+    public record ModelVersionCreateRequestDTO(int modelVersionId, string versionDescription, string modelVersionName, string modelName, string defaultTestingMode, DateTime timestamp, string userName, int capacity, double nominalOutput, decimal nominalOutputPercentage, decimal nonlinearityPercentage, int minimumDeadLoad, double vMin, int nMax, int safeLoad, int ultimateLoad, string shellMaterialName, bool alloy, int defaultCableLength, int numberOfGauges, int resistance, string cCNumber, string accuracyClass, string application, int temperingHardnessLow, int temperingHardnessHigh, string nTEPCertificationId, DateTime nTEPCertificationTimestamp, string oIMLCertificationId, DateTime oIMLCertificationTimestamp, bool testPointDirection, Guid guidId);
+    public record ModelVersionUpdateRequestDTO(int modelVersionId, string versionDescription, string modelVersionName, string modelName, string defaultTestingMode, DateTime timestamp, string userName, int capacity, double nominalOutput, decimal nominalOutputPercentage, decimal nonlinearityPercentage, int minimumDeadLoad, double vMin, int nMax, int safeLoad, int ultimateLoad, string shellMaterialName, bool alloy, int defaultCableLength, int numberOfGauges, int resistance, string cCNumber, string accuracyClass, string application, int temperingHardnessLow, int temperingHardnessHigh, string nTEPCertificationId, DateTime nTEPCertificationTimestamp, string oIMLCertificationId, DateTime oIMLCertificationTimestamp, bool testPointDirection, Guid guidId);
+    public record ModelVersionDeleteRequestDTO(Guid guid);
+}

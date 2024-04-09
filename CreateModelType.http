@@ -1,0 +1,171 @@
+//create a sample post to localhost:2341
+//'http://localhost:5007/ModelType/PostEither
+@baseUrl = http://localhost:5007/api
+
+
+///POST  :CREATE QUERY MODELTYPE
+// This should return an error stating GUID cannot be null
+###
+POST {{baseUrl}}/ModelTypes
+Content-Type: application/json
+
+{
+  "modelTypeName": "NEW1hAhu1"
+}
+
+///POST  :CREATE QUERY MODELTYPE
+// This should return an error stating GUID cannot be null
+###
+POST {{baseUrl}}/ModelTypes
+Content-Type: application/json
+
+{
+  "modelTypeName": "NEW1hAhu1"
+}
+
+
+###
+//GET SINGLE  MODELTYPE QUERY 
+
+GET {{baseUrl}}/ModelTypes/ML-0011
+###
+//GET SINGLE  MODELTYPE QUERY 
+GET {{baseUrl}}/ModelTypes/FIRSTMODELTYPE
+
+###
+//GET SINGLE  MODELTYPE QUERY 
+GET {{baseUrl}}/ModelTypes/58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b
+
+###
+//GET SINGLE  MODELTYPE QUERY 
+
+GET {{baseUrl}}/ModelTypes/JsonBody
+Content-Type: application/json
+
+{
+  "modelTypeName": "FIRSTMODELTYPE"
+}
+
+
+
+
+###
+///GET ALL  MODELTYPE QUERY 
+GET http://localhost:5007/api/ModelTypes
+
+###
+///GET ALL  MODELTYPE QUERY 
+GET http://localhost:5007/api/ModelType1
+
+
+###
+// delete a modeltype
+
+DELETE {{baseUrl}}/ModelType/3c69923e-a68e-4348-b06c-7007f527355d
+###
+PUT {{baseUrl}}/ModelType
+Content-Type: application/json
+
+{
+  "modelTypesId": "THIRDmodelTypesId",
+  "modelTypesName": "MODIFIED ML2"
+}
+###
+//END OF MODEL TYPE 
+###
+// START OF MODEL
+//GET ALL  MODELTYPE QUERY
+GET {{baseUrl}}/Models/
+###
+//GET SINGLE  MODELTYPE QUERY 
+// by JsonBody
+
+GET {{baseUrl}}/Models/JsonBody
+Content-Type: application/json
+
+{
+  "modelId": "FIRSTMODELNAME"
+}
+###
+//GET SINGLE  MODEL by Guid
+GET {{baseUrl}}/Models/b27c2c19-522b-49d1-83bf-e80d4dde8c63
+
+
+###
+// Get Single Model by ModelName
+GET {{baseUrl}}/Models/FIRSTMODELNAME
+
+
+
+
+///POST  :CREATE QUERY MODEL
+###
+POST {{baseUrl}}/Models
+Content-Type: application/json
+
+{
+   "modelId": "FIRSTMODELID14",
+    "modelTypesId": "FIRSTmodelTypesId",
+    "modelName": "FIRSTMODELNAME14"
+}
+
+###
+// delete a modeltype
+
+DELETE {{baseUrl}}/Model
+Content-Type: application/json
+
+{
+  "modelId": "FIRSTMODELID14"
+}
+###
+PUT {{baseUrl}}/Model
+Content-Type: application/json
+
+{
+  "modelId": "SECONDMODELID1",
+    "modelTypesId": "SECONDmodelTypesId",
+    "modelName": "WHAT A FUCK"
+}
+
+
+
+
+###
+
+###
+//START OF DOCUMENT TYPE
+POST http://localhost:5007/DocumentType
+Content-Type: application/json
+
+{
+  "modelTypesName": "stringxxx"
+}
+
+###
+POST http://localhost:5007/DocumentType
+Content-Type: application/json
+
+{
+  "documentTypeName": "stringxxx"
+}
+
+###
+
+POST http://localhost:5007/HigherModel/PostHigherModel
+Content-Type: application/json
+
+{
+  "higherModelName": "string1",
+  "higherModelDescription": "string1",
+  "productId": "string1",
+  "capacity": 20
+}
+
+
+
+###
+
+###
+
+GET https://localhost:7210/WeatherForecast?productId=12345
