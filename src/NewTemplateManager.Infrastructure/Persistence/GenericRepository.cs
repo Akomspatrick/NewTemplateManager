@@ -92,6 +92,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
 
         async Task<Either<GeneralFailure, int>> IGenericRepository<T>.UpdateAsync(T entity, CancellationToken cancellationToken)
         {
+
             try
             {
 
@@ -134,7 +135,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
         {
             try
             {
-                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
+                var entity = await _ctx.Set<T>().AsNoTracking().SingleOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
                 return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(entity.GuidId.ToString());
             }
             catch (Exception ex)
@@ -251,6 +252,28 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
                 return GeneralFailures.ErrorRetrievingListDataFromRepository(ex.ToString());
             }
 
+
+        }
+
+        public async Task<Either<GeneralFailure, int>> DeleteByGuidAsync(Guid guid, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
+                if (entity == null)
+                {
+                    return GeneralFailures.DataNotFoundInRepository(guid.ToString());
+                }
+                _ctx.Remove<T>(entity);
+                return await _ctx.SaveChangesAsync(cancellationToken);
+     
+
+            }
+            catch (Exception ex)
+            {
+                //Log this error properly
+                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString());
+            }
 
         }
 

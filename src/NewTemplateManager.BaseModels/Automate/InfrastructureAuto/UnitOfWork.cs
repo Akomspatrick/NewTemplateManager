@@ -1,13 +1,13 @@
 using LanguageExt;
-using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Domain.Interfaces;
+using NewTemplateManager.Domain.Errors;
+using NewTemplateManager.Domain.Interfaces;
 
-namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
+namespace NewTemplateManager.Infrastructure.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public readonly DocumentVersionManagerContext _ctx;
-        public UnitOfWork(DocumentVersionManagerContext ctx) { _ctx = ctx;  }
+        public readonly NewTemplateManagerContext _ctx;
+        public UnitOfWork(NewTemplateManagerContext ctx) { _ctx = ctx;  }
 
         public async Task<Either<GeneralFailure, int>> CommitAllChanges(CancellationToken cancellationToken)=>throw new NotImplementedException("Its not been used to commit for now individual repo implemented savechanges"); 
         public void Dispose(){_ctx?.Dispose();  GC.SuppressFinalize(this); }

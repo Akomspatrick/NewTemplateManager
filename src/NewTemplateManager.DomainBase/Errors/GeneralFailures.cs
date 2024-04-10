@@ -15,7 +15,7 @@
         public static GeneralFailure ProblemDeletingEntityFromRepository(string? value) => new("A05", $"{value} :ProblemDeletingEntityFromRepository", "Error Deleting entity  in Repository");
         public static GeneralFailure ProblemUpdatingEntityInRepository(string? value) => new("A06", $"{value} :ProblemUpdatingEntityInRepository", "Error Updating entity  in Repository");
         public static GeneralFailure DataNotFoundInRepository(string? value) => new("A07", $"{value} : DataNotFoundInRepository", "Data Not Found  in Repository");
-        public static GeneralFailure ExceptionThrown(string where, string? summary, string details) => new("A08", $": Exception Thrown:{summary}", $"{details} ");
+        public static GeneralFailure ExceptionThrown(string where, string? summary, string details) => new("A08", $": Exception Thrown : {summary}", $"{details} ");
 
         //    [Description("Data  already Exist in Repository")]
         //    DuplicatemodelTypesName,

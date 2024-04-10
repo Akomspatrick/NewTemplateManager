@@ -35,19 +35,19 @@ namespace NewTemplateManager.Infrastructure.Persistence
         public DbSet<TestingModeGroup> TestingModeGroups { get; private set; }
         public DbSet<TestPoint> TestPoints { get; private set; }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, System.Threading.CancellationToken cancellationToken = default)
-        {
-            foreach (var entry in ChangeTracker.Entries())
-            {
-                if (entry.Entity.GetType().Name.Contains("Group")  && (entry.Entity is BaseEntity entity) )
-                {
-                    entity.GuidId = Guid.NewGuid(); 
+        //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, System.Threading.CancellationToken cancellationToken = default)
+        //{
+        //    foreach (var entry in ChangeTracker.Entries())
+        //    {
+        //        if (entry.Entity.GetType().Name.Contains("Group")  && (entry.Entity is BaseEntity entity) )
+        //        {
+        //            entity.GuidId = Guid.NewGuid(); 
 
-                }
-            }   
+        //        }
+        //    }   
 
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
+        //    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        //}
 
     }
 }

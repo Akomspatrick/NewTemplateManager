@@ -1,5 +1,5 @@
-using DocumentVersionManager.Domain.Entities;
-namespace DocumentVersionManager.Domain.Interfaces
+using NewTemplateManager.Domain.Entities;
+namespace NewTemplateManager.Domain.Interfaces
 {
     public  interface IModelRepository:IGenericRepository< Model>
     {

@@ -1,11 +1,11 @@
-using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Domain.Entities;
-namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
+using NewTemplateManager.Domain.Interfaces;
+using NewTemplateManager.Domain.Entities;
+namespace NewTemplateManager.Infrastructure.Persistence.Repositories
 
 {
     public  class  ModelVersionDocumentRepository:GenericRepository<ModelVersionDocument>, IModelVersionDocumentRepository
     {
-        public   ModelVersionDocumentRepository( DocumentVersionManagerContext ctx): base(ctx)
+        public   ModelVersionDocumentRepository( NewTemplateManagerContext ctx): base(ctx)
         {}
     }
 }

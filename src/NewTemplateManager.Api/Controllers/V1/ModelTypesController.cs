@@ -5,9 +5,11 @@ using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
 
 namespace NewTemplateManager.Api.Controllers.v1
 {
+    [ApiVersion(1)]
     public class ModelTypesController : TheBaseController<ModelTypesController>
     {
         public ModelTypesController(ILogger<ModelTypesController> logger, ISender sender) : base(logger, sender) { }

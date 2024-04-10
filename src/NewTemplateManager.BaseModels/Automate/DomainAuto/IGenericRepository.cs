@@ -1,7 +1,7 @@
 using LanguageExt;
-using DocumentVersionManager.DomainBase;
-using DocumentVersionManager.Domain.Errors;
-namespace DocumentVersionManager.Domain.Interfaces
+using NewTemplateManager.DomainBase;
+using NewTemplateManager.Domain.Errors;
+namespace NewTemplateManager.Domain.Interfaces
 {
 
     public interface IGenericRepository<T> where T : BaseEntity

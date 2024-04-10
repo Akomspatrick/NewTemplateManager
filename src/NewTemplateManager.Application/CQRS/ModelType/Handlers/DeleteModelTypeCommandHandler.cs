@@ -21,12 +21,13 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
 
         public async Task<Either<GeneralFailure, int>> Handle(DeleteModelTypeCommand request, CancellationToken cancellationToken)
         {
-            return (
-                await _unitOfWork.ModelTypeRepository
-                .GetMatch(s => (s.GuidId.Equals(request.DeleteModelTypeDTO.guid)), null, cancellationToken))
-                .Match(Left: x => x, Right: x => _unitOfWork.ModelTypeRepository
-                .DeleteAsync(x, cancellationToken)
-                .Result);
+            //return (
+            //    await _unitOfWork.ModelTypeRepository
+            //    .GetMatch(s => (s.GuidId.Equals(request.DeleteModelTypeDTO.guid)), null, cancellationToken))
+            //    .Match(Left: x => x, Right: x => _unitOfWork.ModelTypeRepository
+            //    .DeleteAsync(x, cancellationToken)
+            //    .Result);
+            return await _unitOfWork.ModelTypeRepository.DeleteByGuidAsync(request.DeleteModelTypeDTO.guid, cancellationToken);
 
 
         }

@@ -79,16 +79,18 @@
       "replaces": "44350"
     },
     "EnableSwaggerSupport": {
-      "datatype": "bool",
-      "defaultValue": true,
-      "description": "Enable Swagger UI and Swagger JSON endpoints.",
-      "type": "parameter"
-    },
-    "IncludeGitFolder": {
+      "type": "parameter",
       "datatype": "bool",
       "defaultValue": false,
-      "description": "Include a .gitignore file in the project.",
-      "type": "parameter"
+      "description": "Enable Swagger UI and Swagger JSON endpoints.",
+
+    },
+    "IncludeGitFolder": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "description": "Include a .gitignore file in the project."
+
     }
   },
   "sources": [
@@ -103,7 +105,13 @@
             "src/.gitignore",
             ".vs/**",
             ".template.config/**",
-            ".template.config\template.json"
+            ".template.config\template.json",
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json"
 
 
           ]

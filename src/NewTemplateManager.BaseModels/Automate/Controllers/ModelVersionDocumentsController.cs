@@ -1,50 +1,50 @@
-using DocumentVersionManager.Api.Extentions;
-using DocumentVersionManager.Application.CQRS;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
-using DocumentVersionManager.Api.Extensions;
-using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using NewTemplateManager.Api.Extentions;
+using NewTemplateManager.Application.CQRS;
+using Asp.Versioning;;
+using NewTemplateManager.Application.CQRS.ModelVersionDocument.Commands;
+using NewTemplateManager.Application.CQRS.ModelVersionDocument.Queries;
+using NewTemplateManager.Contracts.RequestDTO.Vv1;
+using NewTemplateManager.Contracts.ResponseDTO.Vv1;
+using NewTemplateManager.Api.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-namespace DocumentVersionManager.Api.Controllers.v1
+namespace NewTemplateManager.Api.Controllers.Vv1
 {
+    [ApiVersion({controllerversion})]
     public  class ModelVersionDocumentsController  : TheBaseController<ModelVersionDocumentsController>
     {
 
         public ModelVersionDocumentsController(ILogger<ModelVersionDocumentsController> logger, ISender sender) : base(logger, sender){}
 
         [ProducesResponseType(typeof(IEnumerable<ModelVersionDocumentResponseDTO>), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Get, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Get)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.Get, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.Get)]
         public Task<IActionResult> Get(CancellationToken cToken) => _sender.Send(new GetAllModelVersionDocumentQuery(), cToken).ToActionResult();
 
         [ProducesResponseType(typeof(ModelVersionDocumentResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetById, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetById)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.GetById, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetModelVersionDocumentByGuidQuery(new ModelVersionDocumentGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetModelVersionDocumentByGuidQuery(new ModelVersionDocumentGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetModelVersionDocumentByIdQuery(new ModelVersionDocumentGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetModelVersionDocumentByIdQuery(new ModelVersionDocumentGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ModelVersionDocumentGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetModelVersionDocumentQuery(request), cancellationToken)) .ToActionResult404();
+                => ( _sender.Send(new GetModelVersionDocumentQuery(request), cancellationToken)) .ToEitherActionResult();
 
-        [HttpPost(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create)]
+        [HttpPost(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.Create, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.Create)]
         public Task<IActionResult> Create(ModelVersionDocumentCreateRequestDTO request, CancellationToken cancellationToken)
-             => (_sender.Send(new CreateModelVersionDocumentCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create}", request);
+             => (_sender.Send(new CreateModelVersionDocumentCommand(request), cancellationToken)).ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.ModelVersionDocument.Create}", request);
 
-        [HttpPut(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Update, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Update)]
+        [HttpPut(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.Update, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.Update)]
         public Task<IActionResult> Update(ModelVersionDocumentUpdateRequestDTO request, CancellationToken cancellationToken)
-            => (_sender.Send(new UpdateModelVersionDocumentCommand(request), cancellationToken)) .ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create}", request);
+            => (_sender.Send(new UpdateModelVersionDocumentCommand(request), cancellationToken)) .ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.ModelVersionDocument.Create}", request);
 
 
-        [HttpDelete(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Delete, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Delete)]
+        [HttpDelete(template: NewTemplateManagerAPIEndPoints.ModelVersionDocument.Delete, Name = NewTemplateManagerAPIEndPoints.ModelVersionDocument.Delete)]
         public Task<IActionResult> Delete([FromRoute] Guid request, CancellationToken cancellationToken)
             =>_sender.Send(new DeleteModelVersionDocumentCommand(new ModelVersionDocumentDeleteRequestDTO(request)), cancellationToken).ToActionResult();
 

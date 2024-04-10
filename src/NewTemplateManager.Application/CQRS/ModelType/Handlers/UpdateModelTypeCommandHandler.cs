@@ -27,9 +27,9 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
             //_logger.LogInformation("AddNewModelTypeCommandHandler- New data Added");
         }
 
-        private Domain.Entities.ModelType modify(Domain.Entities.ModelType x, ModelTypeUpdateRequestDTO modelTypeUpdateDTO)
-        {
-            return Domain.Entities.ModelType.Create(modelTypeUpdateDTO.ModelTypeName, x.GuidId);
-        }
+        //private Domain.Entities.ModelType modify(Domain.Entities.ModelType x, ModelTypeUpdateRequestDTO modelTypeUpdateDTO)
+        //{
+        //    return Domain.Entities.ModelType.Create(modelTypeUpdateDTO.ModelTypeName, x.GuidId);
+        //}
     }
 }

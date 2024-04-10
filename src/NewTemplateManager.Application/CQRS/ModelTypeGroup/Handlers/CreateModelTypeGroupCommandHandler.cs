@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using NewTemplateManager.Domain.Errors;
-using Microsoft.Extensions.Logging;
+
 namespace NewTemplateManager.Application.CQRS
 {
     public class CreateTestingModeGroupCommandHandler : IRequestHandler<CreateTestingModeGroupCommand, Either<GeneralFailure, Guid>>
@@ -18,8 +18,7 @@ namespace NewTemplateManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, Guid>> Handle(CreateTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
-            //throw new NotImplementedException("CreateTestingModeGroupCommand Not Yet Implemented");
-
+          
 
             var entity = Domain.Entities.TestingModeGroup.Create(request.CreateTestingModeGroupDTO.TestingModeGroupName, request.CreateTestingModeGroupDTO.testingMode, request.CreateTestingModeGroupDTO.description, request.CreateTestingModeGroupDTO.guidId);
             return (await _unitOfWork.TestingModeGroupRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);

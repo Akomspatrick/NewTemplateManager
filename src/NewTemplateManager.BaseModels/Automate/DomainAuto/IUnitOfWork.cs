@@ -1,6 +1,6 @@
 using LanguageExt;
-using DocumentVersionManager.Domain.Errors;
-namespace DocumentVersionManager.Domain.Interfaces
+using NewTemplateManager.Domain.Errors;
+namespace NewTemplateManager.Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,7 +1,4 @@
-﻿using Asp.Versioning;
-using AutoMapper;
-using NewTemplateManager.Api.Mapping;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 namespace NewTemplateManager.Api.Controllers
 {

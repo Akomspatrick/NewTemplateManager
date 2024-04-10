@@ -1,22 +1,65 @@
-//create a sample post to localhost:2341
+//create a sample post to localhost:5007
 //'http://localhost:5007/ModelType/PostEither
-@baseUrl = http://localhost:5007/api
-
-
-///POST  :CREATE QUERY MODELTYPE
-// This should return an error stating GUID cannot be null
+@baseUrl = http://localhost:5007/api/v1/
+@endpoint= TestingModeGroups
 ###
-POST {{baseUrl}}/ModelTypes
+///GET ALL  TestingModeGroups QUERY 
+###
+GET {{baseUrl}}{{endpoint}}
+
+###
+//GET SINGLE  TestingModeGroups QUERY with id
+##
+GET {{baseUrl}}{{endpoint}}/TESTLINKS_GROUP
+###
+
+///GET SINGLE  TestingModeGroups QUERY with GUID
+##
+GET {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
+###
+
+///GET SINGLE  TestingModeGroups QUERY with JsonBody
+###
+GET {{baseUrl}}{{endpoint}}/JsonBody
+Content-Type: application/json
+
+{
+  "testingModeGroupName": "2string789"
+}
+
+
+
+
+###
+
+///POST  :CREATE QUERY TestingModeGroups
+
+###
+POST {{baseUrl}}{{endpoint}}
+Content-Type: application/json
+
+{
+  "testingModeGroupName": "SampleGroup",
+  "testingMode": "string",
+  "description": "string",
+  "guidId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+
+///DELETE  :DELETE QUERY TestingModeGroups
+
+###
+DELETE  {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
 Content-Type: application/json
 
 {
   "modelTypeName": "NEW1hAhu1"
 }
 
-///POST  :CREATE QUERY MODELTYPE
-// This should return an error stating GUID cannot be null
+
 ###
-POST {{baseUrl}}/ModelTypes
+///update  :UPDATE QUERY TestingModeGroups
+###
+UPDATE {{baseUrl}}/ModelTypes
 Content-Type: application/json
 
 {
@@ -25,6 +68,10 @@ Content-Type: application/json
 
 
 ###
+
+
+
+
 //GET SINGLE  MODELTYPE QUERY 
 
 GET {{baseUrl}}/ModelTypes/ML-0011
@@ -61,7 +108,7 @@ GET http://localhost:5007/api/ModelType1
 ###
 // delete a modeltype
 
-DELETE {{baseUrl}}/ModelType/3c69923e-a68e-4348-b06c-7007f527355d
+DELETE {{baseUrl}}ModelTypes/1d1741c7-7ff7-dde1-0bea-7bac5d25d30d
 ###
 PUT {{baseUrl}}/ModelType
 Content-Type: application/json

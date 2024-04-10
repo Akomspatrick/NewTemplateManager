@@ -22,7 +22,7 @@ public static class APIServiceCollection
     {
 
         var applicationAssembly = typeof(APIServiceCollection).Assembly;
-        services.AddAutoMapper(applicationAssembly);
+       
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
         services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());

@@ -1,11 +1,9 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
-using NewTemplateManager.Application.CQRS.Model.Commands;
-using NewTemplateManager.Contracts.ResponseDTO;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-using Microsoft.Extensions.Logging;
+
 namespace NewTemplateManager.Application.CQRS
 {
     public  class DeleteTestingModeGroupCommandHandler  :  IRequestHandler<DeleteTestingModeGroupCommand, Either<GeneralFailure, int>>
@@ -20,7 +18,11 @@ namespace NewTemplateManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, int>> Handle(DeleteTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return  await _unitOfWork.TestingModeGroupRepository.DeleteByGuidAsync(request.DeleteTestingModeGroupDTO.guid, cancellationToken);
+           
         }
+
     }
 }
+
+

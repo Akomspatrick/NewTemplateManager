@@ -22,10 +22,7 @@ namespace NewTemplateManager.Application.CQRS
         {
             List<string> includes = null;// new List<string>() { "Models" };
             return (await _unitOfWork.TestingModeGroupRepository
-                            //==4
-                            //.GetMatch(s => s.ModelTypeName == request.modelTypeRequestDTO.Value.ModelTypeId, includes, cancellationToken))
-                            //.Map((result) => new ApplicationModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
-
+                          
                             .GetMatch(s => s.GuidId.Equals(request.RequestTestingModeGroupDTO.guid), includes, cancellationToken))
                             .Map((result) => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId));
 

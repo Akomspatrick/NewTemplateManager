@@ -1,4 +1,4 @@
-namespace DocumentVersionManager.Contracts.ResponseDTO
+namespace NewTemplateManager.Contracts.ResponseDTO
 {
     public  record ModelVersionResponseDTO(Object Value);
 }

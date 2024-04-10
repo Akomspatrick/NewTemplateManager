@@ -1,5 +1,5 @@
-using DocumentVersionManager.DomainBase;
-namespace DocumentVersionManager.Domain.Entities
+using NewTemplateManager.DomainBase;
+namespace NewTemplateManager.Domain.Entities
 {
     public partial class ModelType  : BaseEntity
     {

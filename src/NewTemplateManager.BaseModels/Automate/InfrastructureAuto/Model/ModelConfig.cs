@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using DocumentVersionManager.Domain.Entities;
-namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
+using NewTemplateManager.Domain.Entities;
+namespace NewTemplateManager.Infrastructure.Persistence.EntitiesConfig
 {
     public class ModelConfig : IEntityTypeConfiguration<Model>
     {

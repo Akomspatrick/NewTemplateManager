@@ -22,6 +22,7 @@ public static class ApplicationServiceCollection
     {
 
         var applicationAssembly = typeof(ApplicationServiceCollection).Assembly;
+        services.AddAutoMapper(applicationAssembly);
         services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReferenceMarker>());
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviour<,>));
         services.AddScoped<IPipelineBehavior<CreateModelTypeCommand, int>, ValidationModelTypeBehaviour>();

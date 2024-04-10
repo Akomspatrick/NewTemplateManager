@@ -4,7 +4,7 @@ using NewTemplateManager.Contracts.RequestDTO;
 using NewTemplateManager.Contracts.ResponseDTO;
 
 
-namespace NewTemplateManager.Api.Mapping
+namespace NewTemplateManager.Application.Mapping
 {
     public class MappingProfile : Profile
     {
