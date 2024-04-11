@@ -1,10 +1,9 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
-using NewTemplateManager.Application.CQRS.Model.Queries;
 using NewTemplateManager.Domain.Errors;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Contracts.ResponseDTO.V1.auto;
 namespace NewTemplateManager.Application.CQRS
 {
     public  class GetModelVersionByIdQueryHandler  :  IRequestHandler<GetModelVersionByIdQuery, Either<GeneralFailure, ModelVersionResponseDTO>>

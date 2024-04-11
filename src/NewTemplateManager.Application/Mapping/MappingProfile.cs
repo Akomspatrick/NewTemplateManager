@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using NewTemplateManager.Contracts.RequestDTO.V1;
-using NewTemplateManager.Contracts.RequestDTO.V1.auto;
 using NewTemplateManager.Domain.Entities;
 namespace NewTemplateManager.Application.Mapping
 {

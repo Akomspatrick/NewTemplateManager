@@ -1,4 +1,4 @@
-namespace NewTemplateManager.Contracts.ResponseDTO.V1.auto
+namespace NewTemplateManager.Contracts.ResponseDTO.V1
 {
-    public record ShellMaterialResponseDTO(object Value);
+    public  record ShellMaterialResponseDTO(Object Value);
 }

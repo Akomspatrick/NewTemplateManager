@@ -1,4 +1,4 @@
-﻿using NewTemplateManager.Contracts.RequestDTO.V1.auto;
+﻿using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;

@@ -1,9 +1,9 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-
 namespace NewTemplateManager.Application.CQRS
 {
     public  class DeleteTestingModeGroupCommandHandler  :  IRequestHandler<DeleteTestingModeGroupCommand, Either<GeneralFailure, int>>
@@ -18,11 +18,8 @@ namespace NewTemplateManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, int>> Handle(DeleteTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
-            return  await _unitOfWork.TestingModeGroupRepository.DeleteByGuidAsync(request.DeleteTestingModeGroupDTO.guid, cancellationToken);
-           
+            //throw new NotImplementedException("Operation Not Allowed ");
+           return  await _unitOfWork.TestingModeGroupRepository.DeleteByGuidAsync(request.DeleteTestingModeGroupDTO.guid, cancellationToken);
         }
-
     }
 }
-
-

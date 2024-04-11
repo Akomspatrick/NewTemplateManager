@@ -1,7 +1,6 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
-using NewTemplateManager.Application.CQRS.Model.Queries;
-using NewTemplateManager.Contracts.ResponseDTO;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;

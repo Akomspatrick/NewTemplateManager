@@ -5,13 +5,14 @@ using LanguageExt;
 using MediatR;
 using MediatR;
 using AutoMapper;using NewTemplateManager.Domain.Errors;
-using NewTemplateManager.Contracts.ResponseDTO;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 namespace NewTemplateManager.Application.CQRS
 {
     public  class UpdateModelTypeCommandHandler  :  IRequestHandler<UpdateModelTypeCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<UpdateModelTypeCommandHandler> _logger;
+        private readonly IMapper _mapper;
         public UpdateModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelTypeCommandHandler> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));

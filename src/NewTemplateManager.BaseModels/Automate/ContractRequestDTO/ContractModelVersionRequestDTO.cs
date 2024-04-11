@@ -1,4 +1,4 @@
-namespace NewTemplateManager.Contracts.RequestDTO
+namespace NewTemplateManager.Contracts.RequestDTO.V1
 {
     public  record ModelVersionGetRequestByGuidDTO(Guid guid);
     public  record ModelVersionGetRequestByIdDTO(String ObjectNameId);

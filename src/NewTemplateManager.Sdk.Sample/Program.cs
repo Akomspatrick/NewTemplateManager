@@ -5,7 +5,7 @@ using Refit;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Newtonsoft.Json;
-using NewTemplateManager.Contracts.RequestDTO.V1.auto;
+using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 

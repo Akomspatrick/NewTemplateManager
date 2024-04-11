@@ -1,17 +1,14 @@
-using NewTemplateManager.Api.Extentions;
-using NewTemplateManager.Application.CQRS;
 using NewTemplateManager.Api.Extensions;
-using NewTemplateManager.Domain.Errors;
-using LanguageExt;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-using NewTemplateManager.Contracts.RequestDTO.V1.auto;
-using NewTemplateManager.Contracts.ResponseDTO.V1.auto;
+using NewTemplateManager.Application.CQRS;
+using Asp.Versioning;
+using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
-namespace NewTemplateManager.Api.Controllers.v1
+using MediatR;
+using NewTemplateManager.Api.Controllers;
+using Microsoft.AspNetCore.Mvc;
+namespace NewTemplateManager.Api.Controllers.V1
 {
+     [ApiVersion(1)]
     public  class ModelVersionDocumentsController  : TheBaseController<ModelVersionDocumentsController>
     {
 

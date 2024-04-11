@@ -1,13 +1,14 @@
-﻿using NewTemplateManager.Api.Extensions;
+﻿
+using NewTemplateManager.Application.CQRS;
+using Asp.Versioning;
 using NewTemplateManager.Application.CQRS.ModelType.Commands;
-using NewTemplateManager.Application.CQRS.ModelType.Queries;
 using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Asp.Versioning;
-
-namespace NewTemplateManager.Api.Controllers.v1
+using NewTemplateManager.Api.Extentions;
+using NewTemplateManager.Api.Extensions;
+namespace NewTemplateManager.Api.Controllers.V1
 {
     [ApiVersion(1)]
     public class ModelTypesController : TheBaseController<ModelTypesController>

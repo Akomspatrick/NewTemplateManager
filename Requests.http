@@ -14,8 +14,20 @@ GET {{baseUrl}}{{endpoint}}/TESTLINKS_GROUP
 ###
 
 ///GET SINGLE  TestingModeGroups QUERY with GUID
+//Should Return 404 Not Found  "NOT FOUND : DataNotFoundInRepository A07"
+# {
+#   "problemDetails": {
+#     "title": "Data Not Found  in Repository",
+#     "status": 404,
+#     "detail": "NOT FOUND : DataNotFoundInRepository A07"
+#   }
 ##
 GET {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
+###
+
+///GET SINGLE  TestingModeGroups QUERY with JsonBody
+
+GET {{baseUrl}}{{endpoint}}/73a47d45-1b1a-4039-b53a-93b2a8c9ca73
 ###
 
 ///GET SINGLE  TestingModeGroups QUERY with JsonBody
@@ -39,8 +51,8 @@ POST {{baseUrl}}{{endpoint}}
 Content-Type: application/json
 
 {
-  "testingModeGroupName": "SampleGroup",
-  "testingMode": "string",
+  "testingModeGroupName": "SampleGroup11",
+  "defaultTestingMode": "string",
   "description": "string",
   "guidId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
 }
@@ -48,7 +60,7 @@ Content-Type: application/json
 ///DELETE  :DELETE QUERY TestingModeGroups
 
 ###
-DELETE  {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
+DELETE  {{baseUrl}}{{endpoint}}/896a1843-57ef-4e56-b10e-8ac3fa57d34c
 Content-Type: application/json
 
 {

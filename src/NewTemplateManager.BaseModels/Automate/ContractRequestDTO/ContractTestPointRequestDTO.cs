@@ -1,4 +1,4 @@
-namespace NewTemplateManager.Contracts.RequestDTO
+namespace NewTemplateManager.Contracts.RequestDTO.V1
 {
     public  record TestPointGetRequestByGuidDTO(Guid guid);
     public  record TestPointGetRequestByIdDTO(String ObjectNameId);

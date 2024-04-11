@@ -1,4 +1,4 @@
-using NewTemplateManager.Contracts.ResponseDTO.V1.auto;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 
 namespace NewTemplateManager.Contracts.ResponseDTO.V1
 {

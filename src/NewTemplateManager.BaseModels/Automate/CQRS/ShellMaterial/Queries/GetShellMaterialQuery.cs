@@ -1,5 +1,5 @@
-using NewTemplateManager.Contracts.RequestDTO;
-using NewTemplateManager.Contracts.ResponseDTO;
+using NewTemplateManager.Contracts.RequestDTO.V1;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using NewTemplateManager.Application.CQRS.ModelType.Queries;
 using NewTemplateManager.Domain.Errors;
 using NewTemplateManager.Domain.Interfaces;
 using LanguageExt;

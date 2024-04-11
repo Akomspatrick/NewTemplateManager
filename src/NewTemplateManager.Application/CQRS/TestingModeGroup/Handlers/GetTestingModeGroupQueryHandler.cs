@@ -1,12 +1,12 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Contracts.ResponseDTO.V1.auto;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class GetTestingModeGroupQueryHandler : IRequestHandler<GetTestingModeGroupQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
+    public  class GetTestingModeGroupQueryHandler  :  IRequestHandler<GetTestingModeGroupQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetTestingModeGroupQueryHandler> _logger;
@@ -18,8 +18,9 @@ namespace NewTemplateManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupQuery request, CancellationToken cancellationToken)
         {
-               return (await _unitOfWork.TestingModeGroupRepository.GetMatch(s => (s.TestingModeGroupName == request.RequestTestingModeGroupDTO.TestingModeGroupName), null, cancellationToken)).
-                 Map((result) => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode,result.Description ,result.GuidId));
+            return (await _unitOfWork.TestingModeGroupRepository.GetMatch(s => (s.TestingModeGroupName == request.RequestTestingModeGroupDTO.TestingModeGroupName), null, cancellationToken)).
+               Map((result) => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId));
+
         }
     }
 }

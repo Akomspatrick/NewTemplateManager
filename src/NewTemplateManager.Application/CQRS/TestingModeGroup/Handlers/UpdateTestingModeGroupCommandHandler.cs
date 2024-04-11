@@ -1,11 +1,11 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
+using NewTemplateManager.Application.CQRS.Model.Commands;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Domain.Errors;
-using AutoMapper;
-
-
+using MediatR;
+using AutoMapper;using NewTemplateManager.Domain.Errors;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 namespace NewTemplateManager.Application.CQRS
 {
     public  class UpdateTestingModeGroupCommandHandler  :  IRequestHandler<UpdateTestingModeGroupCommand, Either<GeneralFailure, int>>
@@ -22,10 +22,9 @@ namespace NewTemplateManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, int>> Handle(UpdateTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
-
+           // throw new NotImplementedException("OPERATION NOT ALLOWED");
             var entity = _mapper.Map<Domain.Entities.TestingModeGroup>(request.UpdateTestingModeGroupDTO);
             return await _unitOfWork.TestingModeGroupRepository.UpdateAsync(entity, cancellationToken);
-
         }
     }
 }

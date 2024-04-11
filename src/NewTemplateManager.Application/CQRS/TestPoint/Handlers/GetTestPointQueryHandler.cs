@@ -1,9 +1,9 @@
 using NewTemplateManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Contracts.ResponseDTO.V1.auto;
 namespace NewTemplateManager.Application.CQRS
 {
     public  class GetTestPointQueryHandler  :  IRequestHandler<GetTestPointQuery, Either<GeneralFailure, TestPointResponseDTO>>
