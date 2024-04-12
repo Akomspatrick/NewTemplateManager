@@ -17,17 +17,11 @@ namespace NewTemplateManager.Infrastructure
         {
             var applicationAssembly = typeof(InfrastructureServiceCollection).Assembly;
 
-            // services.AddAutoMapper(applicationAssembly);
-            //services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<ModelTypesRepository>());
             // services.AddExceptionHandler<GlobalExceptionHandler.GlobalExceptionHandler>();
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
-            // services.AddDbContext<NewTemplateManagerContext>(option => option.UseMySQL(configuration.GetConnectionString(Domain.Constants.FixedValues.DBConnectionStringName)!));
             services.AddDbContext<NewTemplateManagerContext>(option => option.UseMySql(configuration.GetConnectionString(constr)!, GeneralUtils.GetMySqlVersion()));
-
-            services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-           // services.AddScoped(typeof(ILogger<>), typeof(LoggerAdapter<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");

@@ -22,7 +22,7 @@ namespace NewTemplateManager.Domain.Entities
 
 
         // Meaning that modelTypesName may evetualy become modelTypesId
-        private List<Document> _documents = Enumerable.Empty<Document>().ToList();
+        //private List<Document> _documents = Enumerable.Empty<Document>().ToList();
         //private List<CapacityDocument> _capacityDocuments = Enumerable.Empty<CapacityDocument>().ToList();
         //private List<Specification> _capacitySpecifications = Enumerable.Empty<Specification>().ToList();
 
