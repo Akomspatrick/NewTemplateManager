@@ -8,12 +8,12 @@ namespace NewTemplateManager.Application.Mapping
         public MappingProfile()
         {
             // Model Mappings 
-            //CreateMap<ModelGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<ModelUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<ModelGetRequestDTO, Model>().ReverseMap();
+            //CreateMap<ModelGetRequestByIdDTO, Model>().ReverseMap();
+            //CreateMap<ModelGetRequestByGuidDTO, Model>().ReverseMap();
+            //CreateMap<ModelCreateRequestDTO, Model>().ReverseMap();
+            CreateMap<ModelUpdateRequestDTO, Model>().ReverseMap();
+            //CreateMap<ModelDeleteRequestDTO, Model>().ReverseMap();
 
             // ModelType Mappings 
             //CreateMap<ModelTypeGetRequestDTO, ModelType>().ReverseMap();
@@ -24,52 +24,52 @@ namespace NewTemplateManager.Application.Mapping
             //CreateMap<ModelTypeDeleteRequestDTO, ModelType>().ReverseMap();
 
             // ModelVersion Mappings 
-            //CreateMap<ModelVersionGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<ModelVersionUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<ModelVersionGetRequestDTO, ModelVersion>().ReverseMap();
+            //CreateMap<ModelVersionGetRequestByIdDTO, ModelVersion>().ReverseMap();
+            //CreateMap<ModelVersionGetRequestByGuidDTO, ModelVersion>().ReverseMap();
+            //CreateMap<ModelVersionCreateRequestDTO, ModelVersion>().ReverseMap();
+            CreateMap<ModelVersionUpdateRequestDTO, ModelVersion>().ReverseMap();
+            //CreateMap<ModelVersionDeleteRequestDTO, ModelVersion>().ReverseMap();
 
             // ModelVersionDocument Mappings 
-            //CreateMap<ModelVersionDocumentGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionDocumentGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionDocumentGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionDocumentCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<ModelVersionDocumentUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelVersionDocumentDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<ModelVersionDocumentGetRequestDTO, ModelVersionDocument>().ReverseMap();
+            //CreateMap<ModelVersionDocumentGetRequestByIdDTO, ModelVersionDocument>().ReverseMap();
+            //CreateMap<ModelVersionDocumentGetRequestByGuidDTO, ModelVersionDocument>().ReverseMap();
+            //CreateMap<ModelVersionDocumentCreateRequestDTO, ModelVersionDocument>().ReverseMap();
+            CreateMap<ModelVersionDocumentUpdateRequestDTO, ModelVersionDocument>().ReverseMap();
+            //CreateMap<ModelVersionDocumentDeleteRequestDTO, ModelVersionDocument>().ReverseMap();
 
             // ShellMaterial Mappings 
-            //CreateMap<ShellMaterialGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ShellMaterialGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<ShellMaterialGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<ShellMaterialCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<ShellMaterialUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ShellMaterialDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<ShellMaterialGetRequestDTO, ShellMaterial>().ReverseMap();
+            //CreateMap<ShellMaterialGetRequestByIdDTO, ShellMaterial>().ReverseMap();
+            //CreateMap<ShellMaterialGetRequestByGuidDTO, ShellMaterial>().ReverseMap();
+            //CreateMap<ShellMaterialCreateRequestDTO, ShellMaterial>().ReverseMap();
+            CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
+            //CreateMap<ShellMaterialDeleteRequestDTO, ShellMaterial>().ReverseMap();
 
             // TestingModeGroup Mappings 
-            //CreateMap<TestingModeGroupGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestingModeGroupGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<TestingModeGroupGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<TestingModeGroupCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<TestingModeGroupUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestingModeGroupDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<TestingModeGroupGetRequestDTO, TestingModeGroup>().ReverseMap();
+            //CreateMap<TestingModeGroupGetRequestByIdDTO, TestingModeGroup>().ReverseMap();
+            //CreateMap<TestingModeGroupGetRequestByGuidDTO, TestingModeGroup>().ReverseMap();
+            //CreateMap<TestingModeGroupCreateRequestDTO, TestingModeGroup>().ReverseMap();
+            CreateMap<TestingModeGroupUpdateRequestDTO, TestingModeGroup>().ReverseMap();
+            //CreateMap<TestingModeGroupDeleteRequestDTO, TestingModeGroup>().ReverseMap();
 
             // TestPoint Mappings 
-            //CreateMap<TestPointGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<TestPointUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<TestPointGetRequestDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointGetRequestByIdDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointGetRequestByGuidDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointCreateRequestDTO, TestPoint>().ReverseMap();
+            CreateMap<TestPointUpdateRequestDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointDeleteRequestDTO, TestPoint>().ReverseMap();
 
             // TestPoint Mappings 
-            //CreateMap<TestPointGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<TestPointUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<TestPointDeleteRequestDTO, ModelType>().ReverseMap();
+            //CreateMap<TestPointGetRequestDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointGetRequestByIdDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointGetRequestByGuidDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointCreateRequestDTO, TestPoint>().ReverseMap();
+            CreateMap<TestPointUpdateRequestDTO, TestPoint>().ReverseMap();
+            //CreateMap<TestPointDeleteRequestDTO, TestPoint>().ReverseMap();
 
         }
     }

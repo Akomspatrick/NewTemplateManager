@@ -39,7 +39,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetModelTypeShouldRetunHttpStatusCode_OK(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 
@@ -57,7 +57,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetModelTypeByJSONBodyShouldRetunHttpStatusCode_OK(string path)
         {
             // arrange 
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
             var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO);
@@ -85,7 +85,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetModelTypeByJSONBodyShouldRetunShouldAnObjectOfTypeModelTypeEntityWhenSuccesful(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
             var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO);
@@ -130,7 +130,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetByIdModelTypeShouldASingleModelType(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 
@@ -149,7 +149,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetByIdModelTypeShouldASingleModelType_GUID(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 
@@ -206,7 +206,7 @@ namespace NewTemplateManager.Integration.Tests
         public async Task PostShouldReturnCreated_WhenModelTypeNameIsUnique(string path)
         {
             //araange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName()).RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
 
             //act
@@ -241,7 +241,7 @@ namespace NewTemplateManager.Integration.Tests
             // var faker = new AutoFaker<ModelTypeCreateRequestDTO>();//.RuleFor(x => x.ModelTypeName, f =>
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().
                 RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
-                .RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP"); ;
+                 ;
 
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var ExpetedHeaderLocation = $"{path}/{modelTypeGetRequestDTO.GuidId}";
@@ -264,7 +264,7 @@ namespace NewTemplateManager.Integration.Tests
         {
             // arrange
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
-                .RuleFor(x => x.TestingModeGroupName, f => "LOADCELLS_GROUP");
+                ;
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var createdresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 

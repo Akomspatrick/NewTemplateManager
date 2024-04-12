@@ -30,7 +30,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             }
             catch (Exception ex)
             {
-                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
+                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString()+ ex.Message);
             }
 
         }
@@ -88,7 +88,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemUpdatingEntityInRepository(entity.GuidId.ToString());
+                return GeneralFailures.ProblemUpdatingEntityInRepository(entity.GuidId.ToString()+ ex.Message);
             }
 
         }
@@ -103,7 +103,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemDeletingEntityFromRepository(entity.GuidId.ToString());
+                return GeneralFailures.ProblemDeletingEntityFromRepository(entity.GuidId.ToString()+ ex.Message);
             }
 
         }
@@ -120,7 +120,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString());
+                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString()+ ex.Message);
             }
         }
 
@@ -251,7 +251,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString());
+                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString()+ ex.Message);
             }
 
         }

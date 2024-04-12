@@ -28,7 +28,7 @@ namespace NewTemplateManager.Api.Controllers.V1
                 (_sender.Send(new GetModelVersionByIdQuery(new ModelVersionGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ModelVersionResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelVersion.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.ModelVersion.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ModelVersionGetRequestDTO request, CancellationToken cancellationToken)
                 => ( _sender.Send(new GetModelVersionQuery(request), cancellationToken)) .ToEitherActionResult();

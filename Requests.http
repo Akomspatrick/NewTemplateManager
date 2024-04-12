@@ -1,6 +1,93 @@
 //create a sample post to localhost:5007
 //'http://localhost:5007/ModelType/PostEither
 @baseUrl = http://localhost:5007/api/v1/
+@endpoint= ModelTypes
+
+###
+/// 1 GET ALL  ModelTypes QUERY 
+###
+GET {{baseUrl}}{{endpoint}}
+
+###
+
+
+###
+/// 2 GET SINGLE  ModelTypes QUERY with id
+##
+GET {{baseUrl}}{{endpoint}}/FIRSTMODELTYPE
+###
+
+///GET SINGLE  ModelTypes QUERY with GUID
+//Should Return 404 Not Found  "NOT FOUND : DataNotFoundInRepository A07"
+# {
+#   "problemDetails": {
+#     "title": "Data Not Found  in Repository",
+#     "status": 404,
+#     "detail": "NOT FOUND : DataNotFoundInRepository A07"
+#   }
+##
+/// 3 GET SINGLE  ModelTypes QUERY with wrong GUID
+GET {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
+###
+
+
+/// 4 GET SINGLE  ModelTypes QUERY with GUID
+
+GET {{baseUrl}}{{endpoint}}/0cbf17be-bf38-ca5b-21a1-f36b0d7bec2d
+###
+
+
+///5 GET SINGLE  ModelTypes QUERY with JsonBody
+###
+GET {{baseUrl}}{{endpoint}}/JsonBody
+Content-Type: application/json
+
+{
+   "modelTypeName":"FIRSTMODELTYPE"
+}
+
+###
+/// 6 CREATE A NEW MODEL TYPE
+###
+POST {{baseUrl}}{{endpoint}}
+Content-Type: application/json
+
+
+{
+  "guidId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "modelTypeName": "string779"
+}
+
+
+###
+
+
+###
+
+///7 DELETE  :DELETE QUERY MODEL TYPE
+DELETE  {{baseUrl}}{{endpoint}}/3fa85f64-5717-4562-b3fc-2c963f66afa6
+####
+
+###
+/// 8 UPDATE  :UPDATE QUERY MODEL TYPE
+PUT {{baseUrl}}{{endpoint}}
+Content-Type: application/json
+
+ {
+    "guidId": "deb715ba-481b-4c5d-b6a5-8028ea4d9716",
+    "modelTypeName": "SECONDMODELTYPE-AA"
+  }
+
+
+###
+
+
+
+
+
+//create a sample post to localhost:5007
+//'http://localhost:5007/ModelType/PostEither
+@baseUrl = http://localhost:5007/api/v1/
 @endpoint= TestingModeGroups
 ###
 ///GET ALL  TestingModeGroups QUERY 
@@ -47,15 +134,7 @@ Content-Type: application/json
 ///POST  :CREATE QUERY TestingModeGroups
 
 ###
-POST {{baseUrl}}{{endpoint}}
-Content-Type: application/json
 
-{
-  "testingModeGroupName": "SampleGroup11",
-  "defaultTestingMode": "string",
-  "description": "string",
-  "guidId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-}
 
 ///DELETE  :DELETE QUERY TestingModeGroups
 
@@ -71,12 +150,14 @@ Content-Type: application/json
 ###
 ///update  :UPDATE QUERY TestingModeGroups
 ###
-UPDATE {{baseUrl}}/ModelTypes
+PUT {{baseUrl}}{{endpoint}}
 Content-Type: application/json
-
 {
-  "modelTypeName": "NEW1hAhu1"
-}
+    "testingModeGroupName": "12s34tring",
+    "defaultTestingMode": "stringAkoms",
+    "description": "stringAkoms",
+    "guidId": "ec4986f3-6578-4133-b680-47a6c445d2e4"
+  }
 
 
 ###

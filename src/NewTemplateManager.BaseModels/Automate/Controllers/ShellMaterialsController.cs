@@ -28,7 +28,7 @@ namespace NewTemplateManager.Api.Controllers.V1
                 (_sender.Send(new GetShellMaterialByIdQuery(new ShellMaterialGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ShellMaterialResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: NewTemplateManagerAPIEndPoints.ShellMaterial.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.ShellMaterial.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ShellMaterialGetRequestDTO request, CancellationToken cancellationToken)
                 => ( _sender.Send(new GetShellMaterialQuery(request), cancellationToken)) .ToEitherActionResult();

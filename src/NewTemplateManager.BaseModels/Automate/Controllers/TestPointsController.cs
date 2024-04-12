@@ -28,7 +28,7 @@ namespace NewTemplateManager.Api.Controllers.V1
                 (_sender.Send(new GetTestPointByIdQuery(new TestPointGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(TestPointResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: NewTemplateManagerAPIEndPoints.TestPoint.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.TestPoint.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] TestPointGetRequestDTO request, CancellationToken cancellationToken)
                 => ( _sender.Send(new GetTestPointQuery(request), cancellationToken)) .ToEitherActionResult();

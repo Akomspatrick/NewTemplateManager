@@ -19,6 +19,6 @@ namespace NewTemplateManager.Application.CQRS
         {
             throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;
-        }//var entity =null; Domain.Entities.ModelVersion.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelVersionRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
+        }//var entity =null; Domain.Entities.ModelVersion.Create(request.modelVersionCreateDTO.ModelVersionName, request.modelVersionCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelVersionRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
     }
 }
