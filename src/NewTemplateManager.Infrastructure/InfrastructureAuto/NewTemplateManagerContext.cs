@@ -7,14 +7,20 @@ using Microsoft.Extensions.Configuration;
 
 namespace NewTemplateManager.Infrastructure.Persistence
 {
-    public class NewTemplateManagerContext :   DbContext
+    public class NewTemplateManagerContext : DbContext
     {
         private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
-            var conn = _configuration.GetConnectionString(constr);
-            optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
+            if (!optionsBuilder.IsConfigured)
+            {
+                var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
+                var conn = _configuration.GetConnectionString(constr);
+                optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
+            }
+            //var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
+            //var conn = _configuration.GetConnectionString(constr);
+            //optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
         }
         public NewTemplateManagerContext(DbContextOptions<NewTemplateManagerContext> options, IConfiguration configuration) : base(options)
         {
@@ -26,7 +32,7 @@ namespace NewTemplateManager.Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NewTemplateManagerContext).Assembly);
         }
-        
+
         public DbSet<Model> Models { get; private set; }
         public DbSet<ModelType> ModelTypes { get; private set; }
         public DbSet<ModelVersion> ModelVersions { get; private set; }

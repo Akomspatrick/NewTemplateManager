@@ -18,41 +18,20 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
 
         async Task<Either<GeneralFailure, int>> IGenericRepository<T>.AddAsync(T entity, CancellationToken cancellationToken)
         {
-            //try
-            //{
-            //    await _ctx.AddAsync<T>(entity, cancellationToken);
-            //    return await _ctx.SaveChangesAsync(cancellationToken);
-            //}
-            //catch (Exception ex)
-            //{
-            //    //Log this error properly
-            //    return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
-            //}
 
             try
             {
-                //var x = _ctx.Add<T>(entity);
-                //var p = _ctx.SaveChanges();
-
-                //var t = Task.FromResult(p);
-                //return await t;
-
-                await _ctx.AddAsync<T>(entity, cancellationToken);
+                var x = await _ctx.AddAsync<T>(entity, cancellationToken);
                 return await _ctx.SaveChangesAsync(cancellationToken);
             }
             catch (DbUpdateException ex)
             {
-                //Log this error properly
-                // throw ex;
                 return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
             }
             catch (Exception ex)
             {
-                //Log this error properly
-                throw ex;
-                // return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
+                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
             }
-
 
         }
         //async Task<Either<GeneralFailure, Task<IReadOnlyList<T>>>> IGenericRepository<T>.GetAllAsync(CancellationToken cancellationToken)
@@ -266,7 +245,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
                 }
                 _ctx.Remove<T>(entity);
                 return await _ctx.SaveChangesAsync(cancellationToken);
-     
+
 
             }
             catch (Exception ex)
