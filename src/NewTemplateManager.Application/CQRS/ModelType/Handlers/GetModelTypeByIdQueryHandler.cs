@@ -28,8 +28,9 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
                             //.GetMatch(s => s.ModelTypeName == request.modelTypeRequestDTO.Value.ModelTypeId, includes, cancellationToken))
                             //.Map((result) => new ApplicationModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
 
-                            .GetMatch(s => s.ModelTypeName == request.RequestModelTypeDTO.ModelTypeId, includes, cancellationToken))
-                            .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
+                            .GetMatch(s => s.ModelTypeName == request.RequestModelTypeDTO.ModelTypeId, null, cancellationToken))
+                            .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null));
+            //.Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
         }
 
         private ICollection<ModelResponseDTO> convertToModelDto(IReadOnlyCollection<Domain.Entities.Model> models)

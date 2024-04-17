@@ -23,8 +23,9 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
         {
             List<string> includes = new List<string>() { "Models" };
             return (await _unitOfWork.ModelTypeRepository
-                            .GetMatch(s => s.GuidId == request.RequestModelTypeDTO.GuidId, includes, cancellationToken))
-                            .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
+                            .GetMatch(s => s.GuidId == request.RequestModelTypeDTO.GuidId, null, cancellationToken))
+                            .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null));
+            //.Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
         }
 
         private ICollection<ModelResponseDTO> convertToModelDto(IReadOnlyCollection<Domain.Entities.Model> models)

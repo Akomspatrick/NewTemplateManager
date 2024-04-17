@@ -19,10 +19,11 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
         public async Task<Either<GeneralFailure, ModelTypeResponseDTO>> Handle(GetModelTypeQuery request, CancellationToken cancellationToken)
         {
 
-            List<string> includes = new List<string>() { "Models" };
+            //  List<string> includes = new List<string>() { "Models" };
             return (await _unitOfWork.ModelTypeRepository
-                    .GetMatch(s => (s.ModelTypeName == request.RequestModelTypeDTO.ModelTypeName), includes, cancellationToken))
-                    .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
+                    .GetMatch(s => (s.ModelTypeName == request.RequestModelTypeDTO.ModelTypeName), null, cancellationToken))
+                    .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null));
+            //.Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
 
         }
 

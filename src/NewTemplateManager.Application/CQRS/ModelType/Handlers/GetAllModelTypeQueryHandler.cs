@@ -23,18 +23,20 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
         {
 
             return (await _unitOfWork.ModelTypeRepository
-                  .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
+                    //.GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
+                    .GetAllAsync(s => true, null, null, cancellationToken))
+
                   .Map(task => task
-                 .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
-     
-        
-        
+      // .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
+      .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null)));
+
+
         }
 
-        private ICollection<ModelResponseDTO> ConvertTo(IEnumerable<Domain.Entities.Model> models)
-        {
+        //private ICollection<ModelResponseDTO> ConvertTo(IEnumerable<Domain.Entities.Model> models)
+        //{
 
-            return models.Select(x => new ModelResponseDTO(x.GuidId, x.ModelName, x.ModelTypeName, null)).ToList();
-        }
+        //    return models.Select(x => new ModelResponseDTO(x.GuidId, x.ModelName, x.ModelTypeName, null)).ToList();
+        //}
     }
 }

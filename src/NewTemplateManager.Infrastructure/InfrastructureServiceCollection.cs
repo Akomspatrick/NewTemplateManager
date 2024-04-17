@@ -9,21 +9,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NewTemplateManager.Infrastructure
+namespace DocumentVersionManager.Infrastructure
 {
     public static class InfrastructureServiceCollection
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationAssembly = typeof(InfrastructureServiceCollection).Assembly;
-
-            // services.AddExceptionHandler<GlobalExceptionHandler.GlobalExceptionHandler>();
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             services.AddDbContext<NewTemplateManagerContext>(option => option.UseMySql(configuration.GetConnectionString(constr)!, GeneralUtils.GetMySqlVersion()));
-            services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
             services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
             return services;
         }

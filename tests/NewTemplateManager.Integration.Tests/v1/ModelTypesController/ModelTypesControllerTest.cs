@@ -18,39 +18,42 @@ using LanguageExt.Pretty;
 using NewTemplateManager.Api.Controllers;
 using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
+using NewTemplateManager.Integration.Tests.Base;
 
-namespace NewTemplateManager.Integration.Tests
+namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 {
-    public class ModelTypesControllerTest : IClassFixture<WebApplicationFactory<APIAssemblyRefrenceMarker>>, IAsyncLifetime
+    public class ModelTypesControllerTest : BaseIntegrationTests
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = $"http://localhost:5007/";
-        private readonly List<String> headerLocations = [];
+        private readonly List<string> headerLocations = [];
 
-        public ModelTypesControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)
+        public ModelTypesControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
         {
-            _httpClient = _appFactory.CreateClient();
-            // _httpClient.BaseAddress = new Uri($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/");
-            // Layout should setup post  TestingModeGroup  by inserting into it  before 
+
+            //_httpClient.BaseAddress = new Uri($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/");
+            // _httpClient.BaseAddress = new Uri($"http://localhost:5007/api/v1/");
             _httpClient.BaseAddress = new Uri($"http://localhost:5007/api/v1/");
         }
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        public async Task GetModelTypeShouldRetunHttpStatusCode_OK(string path)
+        public async Task Get_ModelType_ShouldRetunHttpStatusCode_OK_WhenDataExistInTheTable(string path)
         {
+            //path = $"/v1/{path}";
             //arrange
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 
             // act
+            // var response = await _httpClient.GetAsync($"{postresponse.Headers.Location?.OriginalString}");
+            //var url = new Uri($"{_baseUrl}api/v1/{path}/{modelTypeGetRequestDTO.GuidId}");
             var url = new Uri($"{_baseUrl}api/v1/{path}/{modelTypeGetRequestDTO.GuidId}");
             var response = await _httpClient.GetAsync(url);
+
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             // createdGuids.Add(modelTypeGetRequestDTO.GuidId);
-            headerLocations.Add(response.Headers.Location?.OriginalString);
+            //headerLocations.Add(response.Headers.Location?.OriginalString);
         }
 
 
@@ -59,17 +62,20 @@ namespace NewTemplateManager.Integration.Tests
         public async Task GetModelTypeByJSONBodyShouldRetunHttpStatusCode_OK(string path)
         {
             // arrange 
+            // var path = $"api/v1/{path1}";
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
-            var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO.ModelTypeName);
+            var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO);
+
+
+            var responsex = await _httpClient.GetAsync($"{postresponse.Headers.Location?.OriginalString}");
 
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                //RequestUri = new Uri($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{path}/JsonBody/"),
-                RequestUri = new Uri($"{_baseUrl}api/v1/{path}/JsonBody/"),
+                RequestUri = new Uri($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{path}/JsonBody/"),
 
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };

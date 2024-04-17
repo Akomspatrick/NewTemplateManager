@@ -3,6 +3,7 @@ using NewTemplateManager.Application;
 using NewTemplateManager.Infrastructure;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using DocumentVersionManager.Infrastructure;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +19,9 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddEndpointsApiExplorer();
 
-//#if( EnableSwaggerSupport)
-      builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "NewTemplateManager.Api", Version = "v7" }));
-//#endif
+    //#if( EnableSwaggerSupport)
+    builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "NewTemplateManager.Api", Version = "v7" }));
+    //#endif
 
     builder.Services.AddAPIServices(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
@@ -34,10 +35,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-   // #if EnableSwaggerSupport
+    // #if EnableSwaggerSupport
     app.UseSwagger();
     app.UseSwaggerUI();
-   // #endif
+    // #endif
 }
 app.UseSerilogRequestLogging();
 app.UseCors(builder =>

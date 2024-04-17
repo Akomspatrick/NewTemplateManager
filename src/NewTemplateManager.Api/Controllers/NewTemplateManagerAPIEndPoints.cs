@@ -3,6 +3,7 @@ namespace NewTemplateManager.Api.Controllers
     public static class NewTemplateManagerAPIEndPoints
     {
         public const string APIBase = "api/v{version:apiVersion}";
+        //public const string APIBase = "api/v1";
         public static class Model
         {
             public const string Controller = "Models";
