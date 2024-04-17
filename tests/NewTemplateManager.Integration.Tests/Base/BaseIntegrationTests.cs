@@ -8,7 +8,7 @@ namespace NewTemplateManager.Integration.Tests.Base
         // private readonly IServiceScope _scope;
         //  private readonly IntegrationTestWebAppFactory _factory;
         public readonly HttpClient _httpClient;
-        public readonly string _baseUrl = $"http://localhost:5007/";
+        public readonly string _baseUrl = $"http://localhost:5007/api/v1/";
         public BaseIntegrationTests(IntegrationTestWebAppFactory factory)
         {
             //   _factory = factory;
