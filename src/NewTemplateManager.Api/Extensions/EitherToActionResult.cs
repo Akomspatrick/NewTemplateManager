@@ -15,7 +15,7 @@ namespace NewTemplateManager.Api.Extensions
         private static IActionResult Match<L, R>(this Either<L, R> either)
         {
             return either.Match<IActionResult>(
-                Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(400, l)),
+                Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(400, l).ProblemDetails),
                 Right: r => new OkObjectResult(r));
         }
 
@@ -27,7 +27,8 @@ namespace NewTemplateManager.Api.Extensions
         private static IActionResult MatchEitherActionResult<L, R>(this Either<L, R> either)
         {
             return either.Match<IActionResult>(
-                Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l)),
+                Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l).ProblemDetails),
+                //Left: l => new NotFoundObjectResult(new ProblemDetails { Detail = "vbvfbfd", Title = "dggrfgrgrg" }),
                 Right: r => new OkObjectResult(r));
         }
 
@@ -39,7 +40,7 @@ namespace NewTemplateManager.Api.Extensions
         private static IActionResult MatchCreated<L, R>(this Either<L, R> either, string endPoint, object data)
         {
             return either.Match<IActionResult>(
-                Left: l => new BadRequestObjectResult(l),
+                Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(409, l).ProblemDetails),
                 Right: r => new CreatedResult($"{endPoint}/{r}", data));
         }
     }

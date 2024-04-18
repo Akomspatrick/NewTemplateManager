@@ -19,6 +19,7 @@ using NewTemplateManager.Api.Controllers;
 using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Integration.Tests.Base;
+using NewTemplateManager.Domain.Errors;
 
 namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 {
@@ -239,8 +240,11 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
             var response = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            var problemDetail = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+            problemDetail.Title.Should().Contain("Error Adding entity  into to Repository");
+            problemDetail.Type.Should().Be("A04");
         }
-
+        //Duplicate entry 'Handmade Fresh Tuna' for key 'ModelTypes.PRIMARY' 
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
@@ -268,8 +272,8 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 
         [Theory]
 
-        [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        public async Task Delete_Should_ReturnOk_WhenModelTypeExistsAndItwasDeleted(string path)
+        [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
+        public async Task Delete_Should_ReturnOk_WhenModelTypeFoundAndItwasDeletedSucceffuly(string path)
         {
             // arrange
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
@@ -284,20 +288,20 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        [Theory(Skip = "Delete Should Only Use GUID")]
-        [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        public async Task DeleteShouldReturnNotFoudWhenModelTypeNameDoesExists(string path)
-        {
-            // arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-            ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
+        //[Theory(Skip = "Delete Should Only Use GUID")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
+        //public async Task DeleteShouldReturnNotFoudWhenModelTypeNameDoesExists(string path)
+        //{
+        //    // arrange
+        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
+        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
 
-            //act
-            var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{modelTypeGetRequestDTO.ModelTypeName}");
+        //    //act
+        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{modelTypeGetRequestDTO.ModelTypeName}");
 
-            //assert
-            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        }
+        //    //assert
+        //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        //}
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
@@ -309,9 +313,13 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 
             //act
             var result = await _httpClient.DeleteAsync($"{_baseUrl}{path}/{modelTypeGetRequestDTO.GuidId}");
-
+            // extract problemdetail result  from response
+            var problemDetail = await result.Content.ReadFromJsonAsync<ProblemDetails>();
             //assert
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            problemDetail.Title.Should().Be("Data Not Found  in Repository");
+            problemDetail.Type.Should().Be("A07");
+
         }
         public Task InitializeAsync() => Task.CompletedTask;
 

@@ -26,6 +26,7 @@ namespace NewTemplateManager.Api.APIResponse
         //        .Select(x => x.ErrorMessage).ToArray();
         //}
         //  public IEnumerable<string> Errors { get; }
+        //public ProblemDetails Response => ProblemDetails;
         public ProblemDetails ProblemDetails { get; }
         public ApiBadRequestResponse(int status, object errors)
             : base(status)
@@ -41,6 +42,8 @@ namespace NewTemplateManager.Api.APIResponse
                     //Type = nameof(exception),
                     Title = error.ErrorDescription,//"An error occured from " + exception.Source,
                     Status = status,// (int)HttpStatusCode.InternalServerError,
+                    Type = error.Code,
+                    Instance = error.OriginalError
 
                 };
             }
@@ -59,6 +62,7 @@ namespace NewTemplateManager.Api.APIResponse
                         //Type = nameof(exception),
                         Title = error,//"An error occured from " + exception.Source,
                         Status = status,// (int)HttpStatusCode.InternalServerError,
+                        Type = ex.GetType().Name,
 
                     };
                 }

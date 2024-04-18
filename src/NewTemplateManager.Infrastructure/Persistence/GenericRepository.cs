@@ -26,11 +26,12 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             }
             catch (DbUpdateException ex)
             {
-                return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
-            }
+                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString() + ex.Message);
+                      }
             catch (Exception ex)
             {
-                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString()+ ex.Message);
+                return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
+
             }
 
         }

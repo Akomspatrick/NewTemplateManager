@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
     //builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
     builder.Services.AddControllers();
+    builder.Services.AddProblemDetails();
+
     builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                      .ReadFrom.Configuration(hostingContext.Configuration)
                      .Enrich.FromLogContext()
@@ -31,7 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 var app = builder.Build();
-
+app.UseStatusCodePages();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
