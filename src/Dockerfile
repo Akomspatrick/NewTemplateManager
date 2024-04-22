@@ -33,7 +33,7 @@ RUN dotnet restore "NewTemplateManager.Api/NewTemplateManager.Api.csproj"
 COPY . .
 # Set the Working Directory inside the container
 WORKDIR "/src/NewTemplateManager.Api/"
-
+RUN ls -la
 # run build over the API project
 RUN dotnet build "NewTemplateManager.Api.csproj" -c Release -o /app/build
 
