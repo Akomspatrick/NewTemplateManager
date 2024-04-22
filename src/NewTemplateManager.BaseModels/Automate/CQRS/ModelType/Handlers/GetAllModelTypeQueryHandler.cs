@@ -10,10 +10,12 @@ namespace NewTemplateManager.Application.CQRS
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetAllModelTypeQueryHandler> _logger;
-        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger)
+        public IModelTypeRepository _modelTypeRepository ;
+        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger, IModelTypeRepository modelTypeRepository )
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _modelTypeRepository = modelTypeRepository  ?? throw new ArgumentNullException(nameof(modelTypeRepository ));
         }
 
         public async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)

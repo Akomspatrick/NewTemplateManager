@@ -12,12 +12,14 @@ namespace NewTemplateManager.Application.CQRS
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<UpdateModelCommandHandler> _logger;
+        public IModelRepository _modelRepository ;
         private readonly IMapper _mapper;
-        public UpdateModelCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelCommandHandler> logger, IMapper mapper)
+        public UpdateModelCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelCommandHandler> logger, IMapper mapper, IModelRepository modelRepository )
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _modelRepository = modelRepository  ?? throw new ArgumentNullException(nameof(modelRepository ));
         }
 
         public async Task<Either<GeneralFailure, int>> Handle(UpdateModelCommand request, CancellationToken cancellationToken)

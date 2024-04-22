@@ -147,23 +147,7 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
         //    result.ModelTypeName.Should().Be(modelTypeGetRequestDTO.ModelTypeName);
         //}
 
-        [Theory(Skip = "Delete Should Only Use GUID")]
-        [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        public async Task GetByIdModelTypeShouldASingleModelType_GUID(string path)
-        {
-            //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-            ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-            var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
 
-            // act
-            var response = await _httpClient.GetAsync($"{_baseUrl}{postresponse.Headers.Location?.OriginalString}");
-            var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
-
-            //assert
-            result.Should().BeAssignableTo<ModelTypeResponseDTO>();
-            result.ModelTypeId.Should().Be(modelTypeGetRequestDTO.GuidId);
-        }
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "")]
@@ -269,7 +253,6 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 
         }
 
-
         [Theory]
 
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
@@ -288,20 +271,7 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        //[Theory(Skip = "Delete Should Only Use GUID")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task DeleteShouldReturnNotFoudWhenModelTypeNameDoesExists(string path)
-        //{
-        //    // arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
 
-        //    //act
-        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{modelTypeGetRequestDTO.ModelTypeName}");
-
-        //    //assert
-        //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        //}
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]

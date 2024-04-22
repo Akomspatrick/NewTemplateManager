@@ -28,7 +28,6 @@ namespace NewTemplateManager.Api.Extensions
         {
             return either.Match<IActionResult>(
                 Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l).ProblemDetails),
-                //Left: l => new NotFoundObjectResult(new ProblemDetails { Detail = "vbvfbfd", Title = "dggrfgrgrg" }),
                 Right: r => new OkObjectResult(r));
         }
 

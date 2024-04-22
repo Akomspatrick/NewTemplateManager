@@ -1,26 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
-using NewTemplateManager.Domain.Errors;
-using NewTemplateManager.Domain.Interfaces;
+﻿using NewTemplateManager.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Contracts.RequestDTO.V1;
+
 using AutoMapper;
+using NewTemplateManager.Domain.Errors;
 
-
-namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
+using NewTemplateManager.Application.CQRS.ModelType.Commands;
+namespace NewTemplateManager.Application.CQRS
 {
     public class UpdateModelTypeCommandHandler : IRequestHandler<UpdateModelTypeCommand, Either<GeneralFailure, int>>
     {
-        private readonly ILogger<UpdateModelTypeCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<UpdateModelTypeCommandHandler> _logger;
+        public IModelTypeRepository _modelTypeRepository;
         private readonly IMapper _mapper;
-        public UpdateModelTypeCommandHandler(ILogger<UpdateModelTypeCommandHandler> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelTypeCommandHandler> logger, IMapper mapper, IModelTypeRepository modelTypeRepository)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
         }
+
         public async Task<Either<GeneralFailure, int>> Handle(UpdateModelTypeCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("UpdateTestingModeGroupCommandHandler- Request for update not allowed on  {0} it is a primary key", request.UpdateModelTypeDTO.ModelTypeName);
@@ -30,8 +32,7 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
             //return await _unitOfWork.ModelTypeRepository.UpdateAsync(entity, cancellationToken);
             ////_logger.LogInformation("AddNewModelTypeCommandHandler- New data Added");
             var entity = _mapper.Map<Domain.Entities.ModelType>(request.UpdateModelTypeDTO);
-            return await _unitOfWork.ModelTypeRepository.UpdateAsync(entity, cancellationToken);
-
+            return await _modelTypeRepository.UpdateAsync(entity, cancellationToken);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace DocumentVersionManager.Infrastructure
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             services.AddDbContext<NewTemplateManagerContext>(option => option.UseMySql(configuration.GetConnectionString(constr)!, GeneralUtils.GetMySqlVersion()));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
+            //Remember to add the new repository here
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
             return services;

@@ -1,42 +1,32 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using NewTemplateManager.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
+using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
-using NewTemplateManager.Domain.Interfaces;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Contracts.ResponseDTO.V1;
-
-
-namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
+namespace NewTemplateManager.Application.CQRS
 {
     public class GetAllModelTypeQueryHandler : IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetAllModelTypeQueryHandler> _logger;
-        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger)
+        public IModelTypeRepository _modelTypeRepository;
+        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger, IModelTypeRepository modelTypeRepository)
         {
-            _logger = logger;
-            _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
         }
 
-
-        async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>.Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
         {
+            return (await _modelTypeRepository
+         //.GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
+         .GetAllAsync(s => true, null, null, cancellationToken))
 
-            return (await _unitOfWork.ModelTypeRepository
-                    //.GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
-                    .GetAllAsync(s => true, null, null, cancellationToken))
-
-                  .Map(task => task
-      // .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
-      .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null)));
-
-
+       .Map(task => task
+// .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
+.Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null)));
         }
-
-        //private ICollection<ModelResponseDTO> ConvertTo(IEnumerable<Domain.Entities.Model> models)
-        //{
-
-        //    return models.Select(x => new ModelResponseDTO(x.GuidId, x.ModelName, x.ModelTypeName, null)).ToList();
-        //}
     }
 }
