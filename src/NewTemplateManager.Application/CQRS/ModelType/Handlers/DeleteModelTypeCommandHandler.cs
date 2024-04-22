@@ -16,6 +16,7 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            
         }
 
 

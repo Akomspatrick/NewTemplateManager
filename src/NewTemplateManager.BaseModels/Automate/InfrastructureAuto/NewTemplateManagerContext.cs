@@ -10,9 +10,13 @@ namespace NewTemplateManager.Infrastructure.Persistence
         private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             var conn = _configuration.GetConnectionString(constr);
             optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
+            }
+
         }
         public NewTemplateManagerContext(DbContextOptions<NewTemplateManagerContext> options, IConfiguration configuration) : base(options)
         {

@@ -6,7 +6,11 @@ using NewTemplateManager.Domain.Errors;
 using NewTemplateManager.Domain.Interfaces;
 using FluentAssertions;
 using NSubstitute;
+using LanguageExt;
+using static LanguageExt.Prelude;
 using NewTemplateManager.Contracts.RequestDTO.V1;
+
+
 using AutoBogus;
 
 namespace NewTemplateManager.Application.Tests.CQRS.ModelType
@@ -15,35 +19,80 @@ namespace NewTemplateManager.Application.Tests.CQRS.ModelType
 
     {
         private static readonly ModelTypeCreateRequestDTO modelTypeCreateDTO = new(Guid.NewGuid(), "ML101");
+        private static readonly ModelTypeDeleteRequestDTO  modelTypeDeleteRequestDTO = new(Guid.NewGuid());
         private static readonly CreateModelTypeCommand createModelTypeCommand = new(CreateModelTypeDTO: modelTypeCreateDTO);
-        private readonly CreateModelTypeCommandHandler createModelTypeCommandHandler;
+        private static readonly DeleteModelTypeCommand deleteModelTypeCommand = new DeleteModelTypeCommand(DeleteModelTypeDTO : modelTypeDeleteRequestDTO);
+                                                                                    
+        private CreateModelTypeCommandHandler createModelTypeCommandHandler;
+        private DeleteModelTypeCommandHandler deleteModelTypeCommandHandler;
         private readonly IUnitOfWork _unitOfWorkMock;
-        //private readonly ILogger<CreateModelTypeCommandHandler> _loggerMock;
+   
         private readonly ILogger<CreateModelTypeCommandHandler> _loggerMock;
+        private readonly ILogger<DeleteModelTypeCommandHandler> _loggerMockD;
         public CreateModelTypeCommandTests()
         {
             _unitOfWorkMock = Substitute.For<IUnitOfWork>();
+            _loggerMockD = Substitute.For<ILogger<DeleteModelTypeCommandHandler>>();
             _loggerMock = Substitute.For<ILogger<CreateModelTypeCommandHandler>>();
             createModelTypeCommandHandler = new CreateModelTypeCommandHandler(_unitOfWorkMock, _loggerMock);
+            deleteModelTypeCommandHandler = new DeleteModelTypeCommandHandler(_unitOfWorkMock, _loggerMockD);
         }
 
         [Fact]
         public async Task CreateModelTypeCommandHandler_ShouldReturnValidRight_WhenNewModelTypeIsAdded()
         {
             //Arrange
-            ModelTypeCreateRequestDTO modelTypeCreateDTO = new(Guid.NewGuid(), "ML1011");
-            CreateModelTypeCommand createModelTypeCommand1 = new(CreateModelTypeDTO: modelTypeCreateDTO);
-            //create a new model type
-            var model = Domain.Entities.ModelType.Create(modelTypeCreateDTO.ModelTypeName, modelTypeCreateDTO.GuidId);
-            _unitOfWorkMock.ModelTypeRepository.AddAsync(model, Arg.Any<CancellationToken>()).Returns(1);
+
+            var success = Right<GeneralFailure, int>(1).AsTask();
+            _unitOfWorkMock.ModelTypeRepository.AddAsync(Arg.Any<Domain.Entities.ModelType>(), Arg.Any<CancellationToken>()).Returns(success);
+
             //Act
-            var result = await createModelTypeCommandHandler.Handle(createModelTypeCommand1, CancellationToken.None);
+            var result = await createModelTypeCommandHandler.Handle(createModelTypeCommand, CancellationToken.None);
             //Assert
 
             result.IsRight.Should().BeTrue();
             result.Match(
                                         Right: r => r.Should().NotBe(Arg.Any<Guid>()),
                                          Left: l => l.Should().BeEquivalentTo(GeneralFailures.ProblemAddingEntityIntoDbContext("2a7c336a-163c-487d-88ca-c41cc129f118")));//INTERESTED ONLY IN LEFT SIDE
+
+        }
+  [Fact]
+    public async Task Handle_Calls_DeleteByGuidAsync_Once()
+    {
+        // Arrange
+        var mockUnitOfWork = Substitute.For<IUnitOfWork>();
+        var handler = new DeleteModelTypeCommandHandler(mockUnitOfWork,_loggerMockD);
+       // var command =               new DeleteModelTypeCommand { DeleteModelTypeDTO = new DeleteModelTypeDTO { guid = Guid.NewGuid() } };
+          // deleteModelTypeCommand = new DeleteModelTypeCommand(DeleteModelTypeDTO : modelTypeDeleteRequestDTO);
+         
+        var cancellationToken = new CancellationToken();
+
+        // Act
+        await handler.Handle(deleteModelTypeCommand, cancellationToken);
+
+        // Assert
+        
+        await mockUnitOfWork.ModelTypeRepository.Received(1).DeleteByGuidAsync(deleteModelTypeCommand.DeleteModelTypeDTO.guid, cancellationToken);
+    }
+        [Fact]
+        public async Task DeleteModelTypeCommandHandler_ShouldReturnValidRight_WhenNewModelTypeIsAdded()
+        {
+            //Arrange
+
+            var success = Right<GeneralFailure, int>(1).AsTask();
+           // _unitOfWorkMock.ModelTypeRepository.AddAsync(Arg.Any<Domain.Entities.ModelType>(), Arg.Any<CancellationToken>()).Returns(success);
+            _unitOfWorkMock.ModelTypeRepository.DeleteByGuidAsync(Arg.Any<Guid>(), Arg.Any<CancellationToken>()).Returns(success);
+            //return await _unitOfWork.ModelTypeRepository.DeleteByGuidAsync(request.DeleteModelTypeDTO.guid, cancellationToken);
+
+            //Act
+
+            var result = await deleteModelTypeCommandHandler.Handle(deleteModelTypeCommand, CancellationToken.None);
+            //Assert
+
+            result.IsRight.Should().BeTrue();
+            // result.Match(
+            //                             Right: r => r.Should().Be(1),
+            //                              Left: l => l.Should().BeEquivalentTo(GeneralFailures.ProblemAddingEntityIntoDbContext("2a7c336a-163c-487d-88ca-c41cc129f118")));//INTERESTED ONLY IN LEFT SIDE
 
         }
         // implement below for exception handling
@@ -58,8 +107,8 @@ namespace NewTemplateManager.Application.Tests.CQRS.ModelType
         //    result.IsRight.Should().BeTrue();
 
         //}
-        [Fact]
-        public async Task CreateModelTypeCommandHandler_ShouldReturnFailure()
+        [Fact (Skip = "Intergration Test should cover adding multiple keys error ")]
+        public async Task CreateModelTypeCommandHandler_ShouldReturnFailure_When_Keys_Are_Same()
         {
             CreateModelTypeCommand createModelTypeCommand1 = new(CreateModelTypeDTO: modelTypeCreateDTO);
             //Arrange
@@ -73,16 +122,18 @@ namespace NewTemplateManager.Application.Tests.CQRS.ModelType
                          Left: l => l.Should().BeEquivalentTo(GeneralFailures.ProblemAddingEntityIntoDbContext("2a7c336a-163c-487d-88ca-c41cc129f118")));//INTERESTED ONLY IN LEFT SIDE
 
         }
-        [Fact(Skip = "I have removed logging  from this handler so test will fail for now, but its a good sample for testing logging")]
-        public async Task LogInformationShoulBeCalledWhenmethodIsInvoked()
-        {
-            //Arrange
-            //  _unitOfWorkMock.ModelTypesRepository.AddAsync(Arg.Any<Domain.Entities.ModelTypes>(), Arg.Any<CancellationToken>()).Returns(GeneralFailure.ProblemAddingEntityIntoDbContext);
-            //Act
-            var _ = await createModelTypeCommandHandler.Handle(createModelTypeCommand, CancellationToken.None);
-            //Assert
-            _loggerMock.Received(1).LogInformation(Arg.Any<string>());
-        }
+            
+  
+        // [Fact(Skip = "I have removed logging  from this handler so test will fail for now, but its a good sample for testing logging")]
+        // public async Task LogInformationShoulBeCalledWhenmethodIsInvoked()
+        // {
+        //     //Arrange
+        //     //  _unitOfWorkMock.ModelTypesRepository.AddAsync(Arg.Any<Domain.Entities.ModelTypes>(), Arg.Any<CancellationToken>()).Returns(GeneralFailure.ProblemAddingEntityIntoDbContext);
+        //     //Act
+        //     var _ = await createModelTypeCommandHandler.Handle(createModelTypeCommand, CancellationToken.None);
+        //     //Assert
+        //     _loggerMock.Received(1).LogInformation(Arg.Any<string>());
+        // }
         //[Fact]
         //public async Task CreateModelTypeCommandHandler_ShouldCall_AddAsyncOnce_WhenCreateModelTypeCommandhandleIsCalled()
         //{
@@ -95,4 +146,5 @@ namespace NewTemplateManager.Application.Tests.CQRS.ModelType
 
         //}
     }
+    
 }
