@@ -4,16 +4,16 @@ namespace NewTemplateManager.Contracts.RequestDTO.V1
 {
 
 
-    //public record ModelTypeCreateRequestDTO(Guid GuidId, string ModelTypeName, string TestingModeGroupName);
+    //public record SampleModelCreateRequestDTO(Guid GuidId, string SampleModelName, string TestingModeGroupName);
 
 
-    //public record ModelTypeUpdateRequestDTO(Guid ModelTypeId, string ModelTypeName, string TestingModeGroupName);
-    public record ModelTypeCreateRequestDTO(Guid GuidId, string ModelTypeName);
+    //public record SampleModelUpdateRequestDTO(Guid SampleModelId, string SampleModelName, string TestingModeGroupName);
+    public record SampleModelCreateRequestDTO(Guid GuidId, string SampleModelName);
 
 
-    public record ModelTypeUpdateRequestDTO(Guid GuidId, string ModelTypeName);
-    public record ModelTypeGetRequestByGuidDTO(Guid GuidId);
-    public record ModelTypeGetRequestByIdDTO(string ModelTypeId);
-    public record ModelTypeGetRequestDTO(string ModelTypeName);
-    public record ModelTypeDeleteRequestDTO(Guid guid);
+    public record SampleModelUpdateRequestDTO(Guid GuidId, string SampleModelName);
+    public record SampleModelGetRequestByGuidDTO(Guid GuidId);
+    public record SampleModelGetRequestByIdDTO(string SampleModelId);
+    public record SampleModelGetRequestDTO(string SampleModelName);
+    public record SampleModelDeleteRequestDTO(Guid guid);
 }

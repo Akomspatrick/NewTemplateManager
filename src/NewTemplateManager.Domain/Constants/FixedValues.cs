@@ -20,11 +20,11 @@ namespace NewTemplateManager.Domain.Constants
         public const string DBClientConnectionStringName = "ClientConstr";
         public const string Client = "";
         public const string ApplicationName = "RegistrationManager";
-        //ModelType Constants
-        public const int modelTypesNameMaxLength = 128;
-        public const int modelTypesNameMinLength = 2;
-        public const int modelTypesIdMinLength = 36;
-        public const int modelTypesIdMaxLength = 68;
+        //SampleModel Constants
+        public const int SampleModelsNameMaxLength = 128;
+        public const int SampleModelsNameMinLength = 2;
+        public const int SampleModelsIdMinLength = 36;
+        public const int SampleModelsIdMaxLength = 68;
 
 
 

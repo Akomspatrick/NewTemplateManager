@@ -15,13 +15,13 @@ namespace NewTemplateManager.Application.Mapping
             //CreateMap<ModelUpdateRequestDTO, Model>().ReverseMap();
             //CreateMap<ModelDeleteRequestDTO, Model>().ReverseMap();
 
-            // ModelType Mappings 
-            //CreateMap<ModelTypeGetRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelTypeGetRequestByIdDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelTypeGetRequestByGuidDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelTypeCreateRequestDTO, ModelType>().ReverseMap();
-            CreateMap<ModelTypeUpdateRequestDTO, ModelType>().ReverseMap();
-            //CreateMap<ModelTypeDeleteRequestDTO, ModelType>().ReverseMap();
+            // SampleModel Mappings 
+            //CreateMap<SampleModelGetRequestDTO, SampleModel>().ReverseMap();
+            //CreateMap<SampleModelGetRequestByIdDTO, SampleModel>().ReverseMap();
+            //CreateMap<SampleModelGetRequestByGuidDTO, SampleModel>().ReverseMap();
+            //CreateMap<SampleModelCreateRequestDTO, SampleModel>().ReverseMap();
+            CreateMap<SampleModelUpdateRequestDTO, SampleModel>().ReverseMap();
+            //CreateMap<SampleModelDeleteRequestDTO, SampleModel>().ReverseMap();
 
 
         }

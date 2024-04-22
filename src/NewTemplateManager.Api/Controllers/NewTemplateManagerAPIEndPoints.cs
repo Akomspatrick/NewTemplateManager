@@ -14,9 +14,9 @@ namespace NewTemplateManager.Api.Controllers
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class ModelType
+        public static class SampleModel
         {
-            public const string Controller = "ModelTypes";
+            public const string Controller = "SampleModels";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";

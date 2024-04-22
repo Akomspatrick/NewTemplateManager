@@ -21,13 +21,13 @@ using NewTemplateManager.Contracts.ResponseDTO.V1;
 
 namespace NewTemplateManager.Integration.Tests
 {//droping this for container testing
-    public class ModelTypesControllerTest : IClassFixture<WebApplicationFactory<APIAssemblyRefrenceMarker>>, IAsyncLifetime
+    public class SampleModelsControllerTest : IClassFixture<WebApplicationFactory<APIAssemblyRefrenceMarker>>, IAsyncLifetime
     {
         //private readonly HttpClient _httpClient;
         //private readonly string _baseUrl = $"http://localhost:5007/";
         //private readonly List<String> headerLocations = [];
 
-        //public ModelTypesControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)
+        //public SampleModelsControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)
         //{
         //    _httpClient = _appFactory.CreateClient();
         //    // _httpClient.BaseAddress = new Uri($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/");
@@ -36,33 +36,33 @@ namespace NewTemplateManager.Integration.Tests
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task GetModelTypeShouldRetunHttpStatusCode_OK(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task GetSampleModelShouldRetunHttpStatusCode_OK(string path)
         //{
         //    //arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var postresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    // act
-        //    var url = new Uri($"{_baseUrl}api/v1/{path}/{modelTypeGetRequestDTO.GuidId}");
+        //    var url = new Uri($"{_baseUrl}api/v1/{path}/{SampleModelGetRequestDTO.GuidId}");
         //    var response = await _httpClient.GetAsync(url);
         //    //assert
         //    response.StatusCode.Should().Be(HttpStatusCode.OK);
-        //    // createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+        //    // createdGuids.Add(SampleModelGetRequestDTO.GuidId);
         //    headerLocations.Add(response.Headers.Location?.OriginalString);
         //}
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task GetModelTypeByJSONBodyShouldRetunHttpStatusCode_OK(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task GetSampleModelByJSONBodyShouldRetunHttpStatusCode_OK(string path)
         //{
         //    // arrange 
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
-        //    var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO.ModelTypeName);
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var postresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
+        //    var json = JsonConvert.SerializeObject(SampleModelGetRequestDTO.SampleModelName);
 
         //    _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         //    var request = new HttpRequestMessage
@@ -79,19 +79,19 @@ namespace NewTemplateManager.Integration.Tests
 
         //    //Assert
         //    response.StatusCode.Should().Be(HttpStatusCode.OK);
-        //    //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+        //    //createdGuids.Add(SampleModelGetRequestDTO.GuidId);
         //    headerLocations.Add(response.Headers.Location?.OriginalString);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task GetModelTypeByJSONBodyShouldRetunShouldAnObjectOfTypeModelTypeEntityWhenSuccesful(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task GetSampleModelByJSONBodyShouldRetunShouldAnObjectOfTypeSampleModelEntityWhenSuccesful(string path)
         //{
         //    //arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
-        //    var json = JsonConvert.SerializeObject(modelTypeGetRequestDTO);
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var postresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
+        //    var json = JsonConvert.SerializeObject(SampleModelGetRequestDTO);
 
         //    _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         //    var request = new HttpRequestMessage
@@ -107,19 +107,19 @@ namespace NewTemplateManager.Integration.Tests
 
         //    //Assert
 
-        //    var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
-        //    result.Should().BeAssignableTo<ModelTypeResponseDTO>();
-        //    result.ModelTypeName.Should().Be(modelTypeGetRequestDTO.ModelTypeName);
-        //    //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+        //    var result = await response.Content.ReadFromJsonAsync<SampleModelResponseDTO>();
+        //    result.Should().BeAssignableTo<SampleModelResponseDTO>();
+        //    result.SampleModelName.Should().Be(SampleModelGetRequestDTO.SampleModelName);
+        //    //createdGuids.Add(SampleModelGetRequestDTO.GuidId);
         //    headerLocations.Add(response.Headers.Location?.OriginalString);
         //}
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "FIRSTMODELTYPE")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "")]
-        //public async Task GetResultShoulNotBeNullModelTypeShouldASingleModelType(string path, string item)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "FIRSTSampleModel")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "")]
+        //public async Task GetResultShoulNotBeNullSampleModelShouldASingleSampleModel(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
@@ -129,58 +129,58 @@ namespace NewTemplateManager.Integration.Tests
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task GetByIdModelTypeShouldASingleModelType(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/")]
+        //public async Task GetByIdSampleModelShouldASingleSampleModel(string path)
         //{
         //    //arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var postresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    // act
         //    var response = await _httpClient.GetAsync($"{_baseUrl}{postresponse.Headers.Location?.OriginalString}");
 
-        //    var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
+        //    var result = await response.Content.ReadFromJsonAsync<SampleModelResponseDTO>();
 
         //    //assert
-        //    result.Should().BeAssignableTo<ModelTypeResponseDTO>();
-        //    result.ModelTypeName.Should().Be(modelTypeGetRequestDTO.ModelTypeName);
+        //    result.Should().BeAssignableTo<SampleModelResponseDTO>();
+        //    result.SampleModelName.Should().Be(SampleModelGetRequestDTO.SampleModelName);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task GetByIdModelTypeShouldASingleModelType_GUID(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/")]
+        //public async Task GetByIdSampleModelShouldASingleSampleModel_GUID(string path)
         //{
         //    //arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var postresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    // act
         //    var response = await _httpClient.GetAsync($"{_baseUrl}{postresponse.Headers.Location?.OriginalString}");
-        //    var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
+        //    var result = await response.Content.ReadFromJsonAsync<SampleModelResponseDTO>();
 
         //    //assert
-        //    result.Should().BeAssignableTo<ModelTypeResponseDTO>();
-        //    result.ModelTypeId.Should().Be(modelTypeGetRequestDTO.GuidId);
+        //    result.Should().BeAssignableTo<SampleModelResponseDTO>();
+        //    result.SampleModelId.Should().Be(SampleModelGetRequestDTO.GuidId);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "")]
-        //public async Task GetModelTypeShouldAListOfModelTypes(string path, string item)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "")]
+        //public async Task GetSampleModelShouldAListOfSampleModels(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
         //    response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        //    var result = await response.Content.ReadFromJsonAsync<List<ModelTypeResponseDTO>>();
+        //    var result = await response.Content.ReadFromJsonAsync<List<SampleModelResponseDTO>>();
         //    result.Capacity.Should().BeGreaterThan(1);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "FIRSTMODELTYPEWRONG")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "99dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")]
-        //public async Task GetASingleModelTypeShouldRetunHttpStatusCode_NotFound_IfItemDoesNotExit(string path, string item)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "FIRSTSampleModelWRONG")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/", "99dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")]
+        //public async Task GetASingleSampleModelShouldRetunHttpStatusCode_NotFound_IfItemDoesNotExit(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
@@ -191,8 +191,8 @@ namespace NewTemplateManager.Integration.Tests
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}WRONG/", "FIRSTMODELTYPE")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}WRONG/", "SECONDMODELTYPE")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}WRONG/", "FIRSTSampleModel")]
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}WRONG/", "SECONDSampleModel")]
         //public async Task ShouldReturnNotFoundIfPathIsWrong(string path, string item)
         //{
         //    // act
@@ -205,52 +205,52 @@ namespace NewTemplateManager.Integration.Tests
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task PostShouldReturnCreated_WhenModelTypeNameIsUnique(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task PostShouldReturnCreated_WhenSampleModelNameIsUnique(string path)
         //{
         //    //araange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
 
         //    //act
-        //    var response = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var response = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    //assert
         //    response.StatusCode.Should().Be(HttpStatusCode.Created);
-        //    //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+        //    //createdGuids.Add(SampleModelGetRequestDTO.GuidId);
         //    headerLocations.Add(response.Headers.Location?.OriginalString);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task PostShouldReturnBadRequest_When_DuplicateModelTypeName(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task PostShouldReturnBadRequest_When_DuplicateSampleModelName(string path)
         //{
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
 
         //    //act
-        //    var ignoreResult = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
-        //    var response = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var ignoreResult = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
+        //    var response = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
         //    //assert
         //    response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         //}
 
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
-        //public async Task PostShouldCreateModelTypeObject_WithCorrectHeaderLocation_WhenSuccessful(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}")]
+        //public async Task PostShouldCreateSampleModelObject_WithCorrectHeaderLocation_WhenSuccessful(string path)
         //{
         //    //arrange
-        //    // var faker = new AutoFaker<ModelTypeCreateRequestDTO>();//.RuleFor(x => x.ModelTypeName, f =>
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().
-        //        RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
+        //    // var faker = new AutoFaker<SampleModelCreateRequestDTO>();//.RuleFor(x => x.SampleModelName, f =>
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().
+        //        RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName())
         //         ;
 
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var ExpetedHeaderLocation = $"{path}/{modelTypeGetRequestDTO.GuidId}";
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var ExpetedHeaderLocation = $"{path}/{SampleModelGetRequestDTO.GuidId}";
 
         //    //act
-        //    var response = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    var response = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    //assert
         //    response.Headers.Location?.OriginalString.Should().EndWith(ExpetedHeaderLocation);
@@ -262,14 +262,14 @@ namespace NewTemplateManager.Integration.Tests
 
         //[Theory]
 
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task DeleteShouldReturnOkWhenModelTypeExists(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/")]
+        //public async Task DeleteShouldReturnOkWhenSampleModelExists(string path)
         //{
         //    // arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName())
         //        ;
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var createdresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
+        //    var createdresponse = await _httpClient.PostAsJsonAsync(path, SampleModelGetRequestDTO);
 
         //    //act
         //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{createdresponse.Headers.Location?.OriginalString}");
@@ -279,30 +279,30 @@ namespace NewTemplateManager.Integration.Tests
         //}
 
         //[Theory(Skip = "Delete Should Only Use GUID")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task DeleteShouldReturnNotFoudWhenModelTypeNameDoesExists(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/")]
+        //public async Task DeleteShouldReturnNotFoudWhenSampleModelNameDoesExists(string path)
         //{
         //    // arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
 
         //    //act
-        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{modelTypeGetRequestDTO.ModelTypeName}");
+        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{SampleModelGetRequestDTO.SampleModelName}");
 
         //    //assert
         //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         //}
 
         //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task DeleteShouldReturnNotFoudWhenModelTypeGuidDoesExists(string path)
+        //[InlineData($"{NewTemplateManagerAPIEndPoints.SampleModel.Controller}/")]
+        //public async Task DeleteShouldReturnNotFoudWhenSampleModelGuidDoesExists(string path)
         //{
         //    // arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
+        //    var faker = new AutoFaker<SampleModelCreateRequestDTO>().RuleFor(x => x.SampleModelName, f => f.Commerce.ProductName());
+        //    SampleModelCreateRequestDTO SampleModelGetRequestDTO = faker.Generate();
 
         //    //act
-        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{modelTypeGetRequestDTO.GuidId}");
+        //    var result = await _httpClient.DeleteAsync($"{_baseUrl}{NewTemplateManagerAPIEndPoints.APIBase}/{SampleModelGetRequestDTO.GuidId}");
 
         //    //assert
         //    result.StatusCode.Should().Be(HttpStatusCode.NotFound);

@@ -1,14 +1,14 @@
-﻿using NewTemplateManager.Application.CQRS.ModelType.Commands;
+﻿using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 using FluentValidation;
 
 namespace NewTemplateManager.Application.Validators
 {
-    public class AddModelTypeValidator : AbstractValidator<CreateModelTypeCommand>
+    public class AddSampleModelValidator : AbstractValidator<CreateSampleModelCommand>
     {
-        public AddModelTypeValidator()
+        public AddSampleModelValidator()
         {
-            RuleFor(x => x.CreateModelTypeDTO).NotNull().NotEmpty();
-            // RuleFor(x=>x.modelTypesName)..NotEmpty();
+            RuleFor(x => x.CreateSampleModelDTO).NotNull().NotEmpty();
+            // RuleFor(x=>x.SampleModelsName)..NotEmpty();
         }
     }
 }

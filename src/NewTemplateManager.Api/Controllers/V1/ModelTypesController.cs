@@ -1,7 +1,7 @@
 ﻿
 using NewTemplateManager.Application.CQRS;
 using Asp.Versioning;
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
+using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using MediatR;
@@ -10,44 +10,44 @@ using NewTemplateManager.Api.Extensions;
 namespace NewTemplateManager.Api.Controllers.V1
 {
     [ApiVersion(1)]
-    public class ModelTypesController : TheBaseController<ModelTypesController>
+    public class SampleModelsController : TheBaseController<SampleModelsController>
     {
-        public ModelTypesController(ILogger<ModelTypesController> logger, ISender sender) : base(logger, sender) { }
+        public SampleModelsController(ILogger<SampleModelsController> logger, ISender sender) : base(logger, sender) { }
 
 
-        [ProducesResponseType(typeof(IEnumerable<ModelTypeResponseDTO>), StatusCodes.Status200OK)]
-        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelType.Get, Name = NewTemplateManagerAPIEndPoints.ModelType.Get)]
-        public Task<IActionResult> Get(CancellationToken cToken) => _sender.Send(new GetAllModelTypeQuery(), cToken).ToActionResult();
+        [ProducesResponseType(typeof(IEnumerable<SampleModelResponseDTO>), StatusCodes.Status200OK)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.SampleModel.Get, Name = NewTemplateManagerAPIEndPoints.SampleModel.Get)]
+        public Task<IActionResult> Get(CancellationToken cToken) => _sender.Send(new GetAllSampleModelQuery(), cToken).ToActionResult();
 
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelType.GetById, Name = NewTemplateManagerAPIEndPoints.ModelType.GetById)]
+        [ProducesResponseType(typeof(SampleModelResponseDTO), StatusCodes.Status200OK)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.SampleModel.GetById, Name = NewTemplateManagerAPIEndPoints.SampleModel.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid) ?
-                 (_sender.Send(new GetModelTypeByGuidQuery(new ModelTypeGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
+                 (_sender.Send(new GetSampleModelByGuidQuery(new SampleModelGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                 (_sender.Send(new GetModelTypeByIdQuery(new ModelTypeGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
+                 (_sender.Send(new GetSampleModelByIdQuery(new SampleModelGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelType.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.ModelType.GetByJSONBody)]
-        public Task<IActionResult> GetByJSONBody([FromBody] ModelTypeGetRequestDTO request, CancellationToken cancellationToken)
-            => (_sender.Send(new GetModelTypeQuery(request), cancellationToken)).ToEitherActionResult();
+        [ProducesResponseType(typeof(SampleModelResponseDTO), StatusCodes.Status200OK)]
+        [HttpGet(template: NewTemplateManagerAPIEndPoints.SampleModel.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.SampleModel.GetByJSONBody)]
+        public Task<IActionResult> GetByJSONBody([FromBody] SampleModelGetRequestDTO request, CancellationToken cancellationToken)
+            => (_sender.Send(new GetSampleModelQuery(request), cancellationToken)).ToEitherActionResult();
 
 
-        [HttpPost(template: NewTemplateManagerAPIEndPoints.ModelType.Create, Name = NewTemplateManagerAPIEndPoints.ModelType.Create)]
-        public Task<IActionResult> Create(ModelTypeCreateRequestDTO request, CancellationToken cancellationToken)
-             => (_sender.Send(new CreateModelTypeCommand(request), cancellationToken)).ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.ModelType.Create}", request);
+        [HttpPost(template: NewTemplateManagerAPIEndPoints.SampleModel.Create, Name = NewTemplateManagerAPIEndPoints.SampleModel.Create)]
+        public Task<IActionResult> Create(SampleModelCreateRequestDTO request, CancellationToken cancellationToken)
+             => (_sender.Send(new CreateSampleModelCommand(request), cancellationToken)).ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.SampleModel.Create}", request);
 
 
-        [HttpPut(template: NewTemplateManagerAPIEndPoints.ModelType.Update, Name = NewTemplateManagerAPIEndPoints.ModelType.Update)]
-        public Task<IActionResult> Update(ModelTypeUpdateRequestDTO request, CancellationToken cancellationToken)
-                => (_sender.Send(new UpdateModelTypeCommand(request), cancellationToken)).ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.ModelType.Create}", request);
+        [HttpPut(template: NewTemplateManagerAPIEndPoints.SampleModel.Update, Name = NewTemplateManagerAPIEndPoints.SampleModel.Update)]
+        public Task<IActionResult> Update(SampleModelUpdateRequestDTO request, CancellationToken cancellationToken)
+                => (_sender.Send(new UpdateSampleModelCommand(request), cancellationToken)).ToActionResultCreated($"{NewTemplateManagerAPIEndPoints.SampleModel.Create}", request);
 
 
-        [HttpDelete(template: NewTemplateManagerAPIEndPoints.ModelType.Delete, Name = NewTemplateManagerAPIEndPoints.ModelType.Delete)]
+        [HttpDelete(template: NewTemplateManagerAPIEndPoints.SampleModel.Delete, Name = NewTemplateManagerAPIEndPoints.SampleModel.Delete)]
         public Task<IActionResult> Delete([FromRoute] Guid request, CancellationToken cancellationToken)
-            => _sender.Send(new DeleteModelTypeCommand(new ModelTypeDeleteRequestDTO(request)), cancellationToken).ToEitherActionResult();
+            => _sender.Send(new DeleteSampleModelCommand(new SampleModelDeleteRequestDTO(request)), cancellationToken).ToEitherActionResult();
     }
 }

@@ -19,18 +19,18 @@ namespace NewTemplateManager.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("NewTemplateManager.Domain.Entities.ModelType", b =>
+            modelBuilder.Entity("NewTemplateManager.Domain.Entities.SampleModel", b =>
                 {
-                    b.Property<string>("ModelTypeName")
+                    b.Property<string>("SampleModelName")
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
                     b.Property<Guid>("GuidId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("ModelTypeName");
+                    b.HasKey("SampleModelName");
 
-                    b.ToTable("ModelTypes");
+                    b.ToTable("SampleModels");
                 });
 #pragma warning restore 612, 618
         }

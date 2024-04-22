@@ -34,7 +34,7 @@ namespace NewTemplateManager.Infrastructure.Persistence
         }
 
 
-        public DbSet<ModelType> ModelTypes { get; private set; }
+        public DbSet<SampleModel> SampleModels { get; private set; }
 
 
         ////public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, System.Threading.CancellationToken cancellationToken = default)

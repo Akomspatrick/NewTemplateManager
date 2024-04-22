@@ -3,31 +3,31 @@ using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using NewTemplateManager.Domain.Errors;
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
+using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class CreateModelTypeCommandHandler : IRequestHandler<CreateModelTypeCommand, Either<GeneralFailure, Guid>>
+    public class CreateSampleModelCommandHandler : IRequestHandler<CreateSampleModelCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<CreateModelTypeCommandHandler> _logger;
-        public IModelTypeRepository _modelTypeRepository;
-        public CreateModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateModelTypeCommandHandler> logger, IModelTypeRepository modelTypeRepository)
+        private readonly ILogger<CreateSampleModelCommandHandler> _logger;
+        public ISampleModelRepository _SampleModelRepository;
+        public CreateSampleModelCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateSampleModelCommandHandler> logger, ISampleModelRepository SampleModelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
+            _SampleModelRepository = SampleModelRepository ?? throw new ArgumentNullException(nameof(SampleModelRepository));
         }
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelTypeCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, Guid>> Handle(CreateSampleModelCommand request, CancellationToken cancellationToken)
         {
-            var entity = Domain.Entities.ModelType.Create(request.CreateModelTypeDTO.ModelTypeName, request.CreateModelTypeDTO.GuidId);
-            var pp = await _modelTypeRepository.AddAsync(entity, cancellationToken);
+            var entity = Domain.Entities.SampleModel.Create(request.CreateSampleModelDTO.SampleModelName, request.CreateSampleModelDTO.GuidId);
+            var pp = await _SampleModelRepository.AddAsync(entity, cancellationToken);
 
             var xx = (pp).Map((x) => entity.GuidId);
             return xx;
-            // return (await _unitOfWork.ModelTypeRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
+            // return (await _unitOfWork.SampleModelRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
             //throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;
-        }//var entity =null; Domain.Entities.ModelType.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await  _modelTypeRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
+        }//var entity =null; Domain.Entities.SampleModel.Create(request.SampleModelCreateDTO.SampleModelName, request.SampleModelCreateDTO.Value.GuidId);return ( await  _SampleModelRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
     }
 }

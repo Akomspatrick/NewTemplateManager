@@ -3,9 +3,9 @@ using NewTemplateManager.Domain.Entities;
 namespace NewTemplateManager.Infrastructure.Persistence.Repositories
 
 {
-    public  class  ModelTypeRepository:GenericRepository<ModelType>, IModelTypeRepository
+    public  class  SampleModelRepository:GenericRepository<SampleModel>, ISampleModelRepository
     {
-        public   ModelTypeRepository( NewTemplateManagerContext ctx): base(ctx)
+        public   SampleModelRepository( NewTemplateManagerContext ctx): base(ctx)
         {}
     }
 }

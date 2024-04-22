@@ -6,27 +6,27 @@ using LanguageExt;
 using MediatR;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class GetAllModelTypeQueryHandler : IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>
+    public class GetAllSampleModelQueryHandler : IRequestHandler<GetAllSampleModelQuery, Either<GeneralFailure, IEnumerable<SampleModelResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<GetAllModelTypeQueryHandler> _logger;
-        public IModelTypeRepository _modelTypeRepository;
-        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger, IModelTypeRepository modelTypeRepository)
+        private readonly ILogger<GetAllSampleModelQueryHandler> _logger;
+        public ISampleModelRepository _SampleModelRepository;
+        public GetAllSampleModelQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllSampleModelQueryHandler> logger, ISampleModelRepository SampleModelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
+            _SampleModelRepository = SampleModelRepository ?? throw new ArgumentNullException(nameof(SampleModelRepository));
         }
 
-        public async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, IEnumerable<SampleModelResponseDTO>>> Handle(GetAllSampleModelQuery request, CancellationToken cancellationToken)
         {
-            return (await _modelTypeRepository
+            return (await _SampleModelRepository
          //.GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
          .GetAllAsync(s => true, null, null, cancellationToken))
 
        .Map(task => task
-// .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
-.Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null)));
+// .Select(result => new SampleModelResponseDTO(result.GuidId, result.SampleModelName, ConvertTo(result.Models))));
+.Select(result => new SampleModelResponseDTO(result.GuidId, result.SampleModelName, null)));
         }
     }
 }

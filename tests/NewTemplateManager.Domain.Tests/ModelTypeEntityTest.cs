@@ -6,38 +6,38 @@ using System.Text.RegularExpressions;
 
 namespace NewTemplateManager.Domain.Tests
 {
-    public class ModelTypeEntityTest
+    public class SampleModelEntityTest
     {
         [Fact]
-        public void CreateModelTypeShouldThrowAnExceptionWhenGuidValuesIsEmpty()
+        public void CreateSampleModelShouldThrowAnExceptionWhenGuidValuesIsEmpty()
         {
             //Arrange
-            //Expected exception message to match the equivalent of "ModelType Guid cannot be empty guidId)", but "Model Type Guid cannot be empty guidId" does not.
-            //Expected exception message to match the equivalent of "ModelType Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'modelTypeName')" does not.
+            //Expected exception message to match the equivalent of "SampleModel Guid cannot be empty guidId)", but "Model Type Guid cannot be empty guidId" does not.
+            //Expected exception message to match the equivalent of "SampleModel Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'SampleModelName')" does not.
 
-            var modelTypeName = Faker.Name.First();//"ML101";
+            var SampleModelName = Faker.Name.First();//"ML101";
             //var nodelGrade = Faker.Name.First();//"SCALES/PAD";
             var guidId = Guid.Empty;
-            var PropertyName = "ModelType Guid value cannot be empty guidId";
+            var PropertyName = "SampleModel Guid value cannot be empty guidId";
             //Act
-            Action act = () => ModelType.Create(modelTypeName, guidId);
+            Action act = () => SampleModel.Create(SampleModelName, guidId);
 
             //Assert
             act.Should().Throw<ArgumentException>().WithMessage($"*{PropertyName}*");
         }
 
         [Fact(Skip = "I have check for other null @ Create")]
-        public void CreateModelTypeShouldThrowAnExceptionWhenModelTypeNameValuesIsNullOrEmpty()
+        public void CreateSampleModelShouldThrowAnExceptionWhenSampleModelNameValuesIsNullOrEmpty()
         {
             //Arrange
-            //  Expected exception message to match the equivalent of "ModelType Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'modelTypeName')" does not.
+            //  Expected exception message to match the equivalent of "SampleModel Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'SampleModelName')" does not.
 
-            var modelTypeName = "";
+            var SampleModelName = "";
             var guidId = Guid.NewGuid();
             //Act
-            Action act = () => ModelType.Create(null, guidId);
+            Action act = () => SampleModel.Create(null, guidId);
             //Assert
-            act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'modelTypeName')");
+            act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'SampleModelName')");
         }
     }
 }

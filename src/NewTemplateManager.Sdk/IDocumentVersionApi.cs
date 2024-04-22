@@ -24,9 +24,9 @@ namespace NewTemplateManager.Sdk
         // [Get("/api/v1/Models")]
         // Task<ApiResponse< IEnumerable<ModelResponseDTO>>> Get(CancellationToken cToken);
 
-        //internal Task< Either<GeneralFailure, ModelTypeResponseDTO?> GetInternal();
+        //internal Task< Either<GeneralFailure, SampleModelResponseDTO?> GetInternal();
 
-        // public async Either<GeneralFailure, ModelTypeResponseDTO> GetInternal();
+        // public async Either<GeneralFailure, SampleModelResponseDTO> GetInternal();
 
 
 
@@ -37,9 +37,9 @@ namespace NewTemplateManager.Sdk
         // [Post("/api/v1/TestingModeGroups")]
         // Task<TestingModeGroupCreateRequestDTO> PostAll([Body]TestingModeGroupCreateRequestDTO request);
         //[Get("/api/v1/Models")]
-        //internal Task<Either<GeneralFailure, ModelTypeResponseDTO>> GetInternal();
+        //internal Task<Either<GeneralFailure, SampleModelResponseDTO>> GetInternal();
 
-        //public async Task<Either<GeneralFailure, ModelTypeResponseDTO>> Get()
+        //public async Task<Either<GeneralFailure, SampleModelResponseDTO>> Get()
         //{
         //    var response = await GetInternal();
         //    return response;

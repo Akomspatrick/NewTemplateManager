@@ -1,23 +1,23 @@
 using NewTemplateManager.DomainBase;
 namespace NewTemplateManager.Domain.Entities
 {
-    public partial class ModelType : BaseEntity
+    public partial class SampleModel : BaseEntity
     {
-        private ModelType() { }
-        public string ModelTypeName { get; init; } = string.Empty;
+        private SampleModel() { }
+        public string SampleModelName { get; init; } = string.Empty;
         // private  List <Model> _Models { get;  set;}  = new List<Model>();
         // public  IReadOnlyCollection<Model> Models => _Models;
         // public Guid GuidId    { get; init; } 
 
-        public static ModelType Create(string modelTypeName, Guid guidId)
+        public static SampleModel Create(string SampleModelName, Guid guidId)
         {
             if (guidId == Guid.Empty)
             {
-                throw new ArgumentException($"ModelType Guid value cannot be empty {nameof(guidId)}");
+                throw new ArgumentException($"SampleModel Guid value cannot be empty {nameof(guidId)}");
             }
             return new()
             {
-                ModelTypeName = modelTypeName,
+                SampleModelName = SampleModelName,
                 GuidId = guidId,
             };
         }

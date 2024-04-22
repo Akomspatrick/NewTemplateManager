@@ -5,8 +5,8 @@ using LanguageExt;
 using MediatR;
 namespace NewTemplateManager.Application.CQRS
 {
-    public record GetModelTypeQuery(ModelTypeGetRequestDTO RequestModelTypeDTO) : IRequest<Either<GeneralFailure, ModelTypeResponseDTO>>;
-    public record GetModelTypeByGuidQuery(ModelTypeGetRequestByGuidDTO RequestModelTypeDTO) : IRequest<Either<GeneralFailure, ModelTypeResponseDTO>>;
-    public record GetModelTypeByIdQuery(ModelTypeGetRequestByIdDTO RequestModelTypeDTO) : IRequest<Either<GeneralFailure, ModelTypeResponseDTO>>;
-    public record GetAllModelTypeQuery : IRequest<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>;
+    public record GetSampleModelQuery(SampleModelGetRequestDTO RequestSampleModelDTO) : IRequest<Either<GeneralFailure, SampleModelResponseDTO>>;
+    public record GetSampleModelByGuidQuery(SampleModelGetRequestByGuidDTO RequestSampleModelDTO) : IRequest<Either<GeneralFailure, SampleModelResponseDTO>>;
+    public record GetSampleModelByIdQuery(SampleModelGetRequestByIdDTO RequestSampleModelDTO) : IRequest<Either<GeneralFailure, SampleModelResponseDTO>>;
+    public record GetAllSampleModelQuery : IRequest<Either<GeneralFailure, IEnumerable<SampleModelResponseDTO>>>;
 }

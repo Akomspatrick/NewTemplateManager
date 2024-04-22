@@ -6,30 +6,30 @@ using LanguageExt;
 using MediatR;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class GetModelTypeByGuidQueryHandler : IRequestHandler<GetModelTypeByGuidQuery, Either<GeneralFailure, ModelTypeResponseDTO>>
+    public class GetSampleModelByGuidQueryHandler : IRequestHandler<GetSampleModelByGuidQuery, Either<GeneralFailure, SampleModelResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<GetModelTypeByGuidQueryHandler> _logger;
-        public IModelTypeRepository _modelTypeRepository;
-        public GetModelTypeByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelTypeByGuidQueryHandler> logger, IModelTypeRepository modelTypeRepository)
+        private readonly ILogger<GetSampleModelByGuidQueryHandler> _logger;
+        public ISampleModelRepository _SampleModelRepository;
+        public GetSampleModelByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetSampleModelByGuidQueryHandler> logger, ISampleModelRepository SampleModelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
+            _SampleModelRepository = SampleModelRepository ?? throw new ArgumentNullException(nameof(SampleModelRepository));
         }
 
-        public async Task<Either<GeneralFailure, ModelTypeResponseDTO>> Handle(GetModelTypeByGuidQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, SampleModelResponseDTO>> Handle(GetSampleModelByGuidQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = new List<string>() { "Models" };
-            return (await _modelTypeRepository
-                            .GetMatch(s => s.GuidId == request.RequestModelTypeDTO.GuidId, null, cancellationToken))
-                            .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, null));
-            //.Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
+            return (await _SampleModelRepository
+                            .GetMatch(s => s.GuidId == request.RequestSampleModelDTO.GuidId, null, cancellationToken))
+                            .Map((result) => new SampleModelResponseDTO(result.GuidId, result.SampleModelName, null));
+            //.Map((result) => new SampleModelResponseDTO(result.GuidId, result.SampleModelName, convertToModelDto(result.Models)));
         }
 
         private ICollection<ModelResponseDTO> convertToModelDto(IReadOnlyCollection<Domain.Entities.Model> models)
         {
-            return models.Select(x => new ModelResponseDTO(x.GuidId, x.ModelName, x.ModelTypeName, null)).ToList();
+            return models.Select(x => new ModelResponseDTO(x.GuidId, x.ModelName, x.SampleModelName, null)).ToList();
         }
     }
 }

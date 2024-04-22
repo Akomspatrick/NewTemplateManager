@@ -72,7 +72,7 @@ namespace NewTemplateManager.Integration.Tests
         //}
 
         //[Fact]
-        //public async Task GetModelByJSONBodyShouldRetunShouldASingleModelType()
+        //public async Task GetModelByJSONBodyShouldRetunShouldASingleSampleModel()
         //{
         //    // arrange 
         //    ModelGetRequestDTO modelGetRequestDTO = new ModelGetRequestDTO("SECONDMODELNAME");
@@ -102,7 +102,7 @@ namespace NewTemplateManager.Integration.Tests
         //[InlineData("Models/", "SECONDMODELNAME")]
         //[InlineData("Models/", "7808711f-544a-423d-8d99-f00c31e35be5")]
         //[InlineData("Models/", "")]
-        //public async Task GetResultShoulNotBeNullModelTypeShouldASingleModelType(string path, string item)
+        //public async Task GetResultShoulNotBeNullSampleModelShouldASingleSampleModel(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
@@ -113,7 +113,7 @@ namespace NewTemplateManager.Integration.Tests
 
         //[Theory]
         //[InlineData("Models/", "SECONDMODELNAME")]
-        //public async Task GetByIdModelShouldASingleModelType(string path, string item)
+        //public async Task GetByIdModelShouldASingleSampleModel(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
@@ -127,7 +127,7 @@ namespace NewTemplateManager.Integration.Tests
 
         //[Theory]
         //[InlineData("Models/", "7808711f-544a-423d-8d99-f00c31e35be5")]
-        //public async Task GetByIdModeShouldASingleModelType_GUID(string path, string item)
+        //public async Task GetByIdModeShouldASingleSampleModel_GUID(string path, string item)
         //{
 
         //    // act
@@ -141,7 +141,7 @@ namespace NewTemplateManager.Integration.Tests
 
         //[Theory]
         //[InlineData("Models/", "")]
-        //public async Task GetModelShouldAListOfModelTypes(string path, string item)
+        //public async Task GetModelShouldAListOfSampleModels(string path, string item)
         //{
         //    // act
         //    var response = await _httpClient.GetAsync(path + item);
@@ -182,13 +182,13 @@ namespace NewTemplateManager.Integration.Tests
         //[Theory]
         //[InlineData("Models")]
 
-        //public async Task PostShouldReturnCreated_WhenModelNameIsUniqueAndModelTypeExistAsForeignkey(string path)
+        //public async Task PostShouldReturnCreated_WhenModelNameIsUniqueAndSampleModelExistAsForeignkey(string path)
         //{
         //    //araange
         //    var faker = new AutoFaker<ModelCreateRequestDTO>()
         //        .RuleFor(x => x.GuidId, f => Guid.NewGuid())
         //        .RuleFor(x => x.ModelName, f => f.Commerce.ProductName())
-        //       .RuleFor(x => x.ModelTypesName, f => "FIRSTMODELTYPE");// Added an existing ModelType
+        //       .RuleFor(x => x.SampleModelsName, f => "FIRSTSampleModel");// Added an existing SampleModel
         //    ModelCreateRequestDTO modelGetRequestDTO = faker.Generate();
 
         //    //act
@@ -200,13 +200,13 @@ namespace NewTemplateManager.Integration.Tests
         //}
         //[Theory]
         //[InlineData("Models")]
-        //public async Task PostShouldReturnBadRequest_When_DuplicateModelExistForSameModelType(string path)
+        //public async Task PostShouldReturnBadRequest_When_DuplicateModelExistForSameSampleModel(string path)
         //{
         //    //araange
         //    var faker = new AutoFaker<ModelCreateRequestDTO>()
         //        .RuleFor(x => x.GuidId, f => Guid.NewGuid())
         //        .RuleFor(x => x.ModelName, f => f.Commerce.ProductName())
-        //       .RuleFor(x => x.ModelTypesName, f => "FIRSTMODELTYPE");// Added an existing ModelType
+        //       .RuleFor(x => x.SampleModelsName, f => "FIRSTSampleModel");// Added an existing SampleModel
         //    ModelCreateRequestDTO modelGetRequestDTO = faker.Generate();
 
         //    //act
@@ -219,13 +219,13 @@ namespace NewTemplateManager.Integration.Tests
         //[Theory]
         //[InlineData("Models")]
 
-        //public async Task PostShouldReturn_BadRequest_WhenModelNameIsUniqueAndModelTypeDoesNotExistAsForeignKey(string path)
+        //public async Task PostShouldReturn_BadRequest_WhenModelNameIsUniqueAndSampleModelDoesNotExistAsForeignKey(string path)
         //{
         //    //araange
         //    var faker = new AutoFaker<ModelCreateRequestDTO>()
         //        .RuleFor(x => x.GuidId, f => Guid.NewGuid())
         //        .RuleFor(x => x.ModelName, f => f.Commerce.ProductName())
-        //       .RuleFor(x => x.ModelTypesName, f => f.Commerce.ProductName());
+        //       .RuleFor(x => x.SampleModelsName, f => f.Commerce.ProductName());
         //    ModelCreateRequestDTO modelGetRequestDTO = faker.Generate();
 
         //    //act
@@ -249,7 +249,7 @@ namespace NewTemplateManager.Integration.Tests
         //    var faker = new AutoFaker<ModelCreateRequestDTO>()
         //        .RuleFor(x => x.GuidId, f => Guid.NewGuid())
         //        .RuleFor(x => x.ModelName, f => f.Commerce.ProductName())
-        //       .RuleFor(x => x.ModelTypesName, f => "FIRSTMODELTYPE");// Added an existing ModelType
+        //       .RuleFor(x => x.SampleModelsName, f => "FIRSTSampleModel");// Added an existing SampleModel
         //    ModelCreateRequestDTO modelGetRequestDTO = faker.Generate();
         //    var ExpetedHeaderLocation = $"{path}/{modelGetRequestDTO.GuidId}";
 

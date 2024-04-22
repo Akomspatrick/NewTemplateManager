@@ -1,5 +1,5 @@
 ﻿using NewTemplateManager.Application.Behaviours;
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
+using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 using NewTemplateManager.Application.Validators;
 using NewTemplateManager.Domain.Interfaces;
 using FluentAssertions.Common;
@@ -25,9 +25,9 @@ public static class ApplicationServiceCollection
         services.AddAutoMapper(applicationAssembly);
         services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReferenceMarker>());
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviour<,>));
-        services.AddScoped<IPipelineBehavior<CreateModelTypeCommand, int>, ValidationModelTypeBehaviour>();
+        services.AddScoped<IPipelineBehavior<CreateSampleModelCommand, int>, ValidationSampleModelBehaviour>();
         //Instead of adding individual fluent validation we can add Fluentvalidation asp.netcore package and then 
-        //services.AddScoped<IValidator<AddNewModelTypeCommand>, AddNewModelTypeValidator>();
+        //services.AddScoped<IValidator<AddNewSampleModelCommand>, AddNewSampleModelValidator>();
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         return services;
     }

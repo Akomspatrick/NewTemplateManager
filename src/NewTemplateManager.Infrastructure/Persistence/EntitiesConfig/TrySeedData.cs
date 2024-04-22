@@ -38,16 +38,16 @@ namespace NewTemplateManager.Infrastructure.Persistence
 
                         //}
 
-                        var modelTypes = ctx.ModelTypes.Any();
-                        if (!modelTypes)
+                        var SampleModels = ctx.SampleModels.Any();
+                        if (!SampleModels)
                         {
-                            var data = new List<ModelType>
+                            var data = new List<SampleModel>
                             {
-                                ModelType.Create("FIRSTMODELTYPE",  Guid.NewGuid()),
-                                ModelType.Create("SECONDMODELTYPE",  Guid.NewGuid()),
-                                ModelType.Create("THIRDMODELTYPE",Guid.NewGuid())
+                                SampleModel.Create("FIRSTSampleModel",  Guid.NewGuid()),
+                                SampleModel.Create("SECONDSampleModel",  Guid.NewGuid()),
+                                SampleModel.Create("THIRDSampleModel",Guid.NewGuid())
                             };
-                            ctx.ModelTypes.AddRange(data);
+                            ctx.SampleModels.AddRange(data);
                             ctx.SaveChanges();
                         }
 
@@ -59,7 +59,7 @@ namespace NewTemplateManager.Infrastructure.Persistence
                 catch (Exception ex)
                 {
 
-                    throw new Exception( "Error in Migration from TrySeeding  data: " + ex.Message);
+                    throw new Exception("Error in Migration from TrySeeding  data: " + ex.Message);
                 }
             }
 

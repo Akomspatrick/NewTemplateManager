@@ -2,7 +2,7 @@ using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-namespace NewTemplateManager.Application.CQRS.ModelType.Commands
+namespace NewTemplateManager.Application.CQRS.SampleModel.Commands
 {
-    public  record UpdateModelTypeCommand(ModelTypeUpdateRequestDTO  UpdateModelTypeDTO) :  IRequest<Either<GeneralFailure, int>>;
+    public  record UpdateSampleModelCommand(SampleModelUpdateRequestDTO  UpdateSampleModelDTO) :  IRequest<Either<GeneralFailure, int>>;
 }

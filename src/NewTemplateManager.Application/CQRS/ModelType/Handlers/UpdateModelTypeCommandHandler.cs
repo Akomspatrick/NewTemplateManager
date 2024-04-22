@@ -6,33 +6,33 @@ using MediatR;
 using AutoMapper;
 using NewTemplateManager.Domain.Errors;
 
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
+using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class UpdateModelTypeCommandHandler : IRequestHandler<UpdateModelTypeCommand, Either<GeneralFailure, int>>
+    public class UpdateSampleModelCommandHandler : IRequestHandler<UpdateSampleModelCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<UpdateModelTypeCommandHandler> _logger;
-        public IModelTypeRepository _modelTypeRepository;
+        private readonly ILogger<UpdateSampleModelCommandHandler> _logger;
+        public ISampleModelRepository _SampleModelRepository;
         private readonly IMapper _mapper;
-        public UpdateModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelTypeCommandHandler> logger, IMapper mapper, IModelTypeRepository modelTypeRepository)
+        public UpdateSampleModelCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateSampleModelCommandHandler> logger, IMapper mapper, ISampleModelRepository SampleModelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
+            _SampleModelRepository = SampleModelRepository ?? throw new ArgumentNullException(nameof(SampleModelRepository));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(UpdateModelTypeCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(UpdateSampleModelCommand request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("UpdateTestingModeGroupCommandHandler- Request for update not allowed on  {0} it is a primary key", request.UpdateModelTypeDTO.ModelTypeName);
+            _logger.LogInformation("UpdateTestingModeGroupCommandHandler- Request for update not allowed on  {0} it is a primary key", request.UpdateSampleModelDTO.SampleModelName);
 
             throw new NotImplementedException("Operation Not Allowed ");
-            //var entity = Domain.Entities.ModelType.Create(request.UpdateModelTypeDTO.ModelTypeName, request.UpdateModelTypeDTO.ModelTypeId);
-            //return await _unitOfWork.ModelTypeRepository.UpdateAsync(entity, cancellationToken);
-            ////_logger.LogInformation("AddNewModelTypeCommandHandler- New data Added");
-            var entity = _mapper.Map<Domain.Entities.ModelType>(request.UpdateModelTypeDTO);
-            return await _modelTypeRepository.UpdateAsync(entity, cancellationToken);
+            //var entity = Domain.Entities.SampleModel.Create(request.UpdateSampleModelDTO.SampleModelName, request.UpdateSampleModelDTO.SampleModelId);
+            //return await _unitOfWork.SampleModelRepository.UpdateAsync(entity, cancellationToken);
+            ////_logger.LogInformation("AddNewSampleModelCommandHandler- New data Added");
+            var entity = _mapper.Map<Domain.Entities.SampleModel>(request.UpdateSampleModelDTO);
+            return await _SampleModelRepository.UpdateAsync(entity, cancellationToken);
         }
     }
 }

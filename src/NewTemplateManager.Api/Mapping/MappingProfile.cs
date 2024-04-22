@@ -10,13 +10,13 @@ namespace NewTemplateManager.Application.Mapping
     {
         public MappingProfile()
         {
-           // CreateMap<ModelTypeGetRequestDTO, ApplicationModelTypeCreateRequestDTO>().ReverseMap();
-           // CreateMap<ModelTypeCreateRequestDTO, ApplicationModelTypeCreateRequestDTO>().ReverseMap();
-           // CreateMap<ModelTypeUpdateRequestDTO, ApplicationModelTypeUpdateRequestDTO>().ReverseMap();
-           // CreateMap<ModelTypeDeleteRequestDTO, ApplicationModelTypeDeleteRequestDTO>().ReverseMap();
-           // CreateMap<ModelTypeGetRequestByGuidDTO, ApplicationModelTypeGetRequestByGuidDTO>().ReverseMap();
-           ////==6 CreateMap<ModelTypeGetRequestByIdDTO, ApplicationModelTypeGetRequestByIdDTO>().ReverseMap();
-           // CreateMap<ModelTypeResponseDTO, ApplicationModelTypeResponseDTO>().ReverseMap();
+           // CreateMap<SampleModelGetRequestDTO, ApplicationSampleModelCreateRequestDTO>().ReverseMap();
+           // CreateMap<SampleModelCreateRequestDTO, ApplicationSampleModelCreateRequestDTO>().ReverseMap();
+           // CreateMap<SampleModelUpdateRequestDTO, ApplicationSampleModelUpdateRequestDTO>().ReverseMap();
+           // CreateMap<SampleModelDeleteRequestDTO, ApplicationSampleModelDeleteRequestDTO>().ReverseMap();
+           // CreateMap<SampleModelGetRequestByGuidDTO, ApplicationSampleModelGetRequestByGuidDTO>().ReverseMap();
+           ////==6 CreateMap<SampleModelGetRequestByIdDTO, ApplicationSampleModelGetRequestByIdDTO>().ReverseMap();
+           // CreateMap<SampleModelResponseDTO, ApplicationSampleModelResponseDTO>().ReverseMap();
            // CreateMap<ModelResponseDTO, ModelResponseDTO>().ReverseMap();
 
 
@@ -27,9 +27,9 @@ namespace NewTemplateManager.Application.Mapping
 
 
 
-            //CreateMap<Persistence.Repositories.Models.ModelType, Domain.ModelAggregateRoot.Entities.ModelType>();//.ReverseMap();
-            //CreateMap< Domain.ModelAggregateRoot.Entities.ModelType, Persistence.Repositories.Models.ModelType>();
-            ////CreateMap<Domain.ModelAggregateRoot.Entities.ModelTypes, Domain.ModelAggregateRoot.Entities.ModelTypes>().ReverseMap();
+            //CreateMap<Persistence.Repositories.Models.SampleModel, Domain.ModelAggregateRoot.Entities.SampleModel>();//.ReverseMap();
+            //CreateMap< Domain.ModelAggregateRoot.Entities.SampleModel, Persistence.Repositories.Models.SampleModel>();
+            ////CreateMap<Domain.ModelAggregateRoot.Entities.SampleModels, Domain.ModelAggregateRoot.Entities.SampleModels>().ReverseMap();
 
 
             //CreateMap<Persistence.Repositories.Models.Model, Domain.ModelAggregateRoot.Entities.Model>().ReverseMap();

@@ -4,30 +4,30 @@ using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-using NewTemplateManager.Application.CQRS.ModelType.Commands;
+using NewTemplateManager.Application.CQRS.SampleModel.Commands;
 namespace NewTemplateManager.Application.CQRS
 {
-    public class DeleteModelTypeCommandHandler : IRequestHandler<DeleteModelTypeCommand, Either<GeneralFailure, int>>
+    public class DeleteSampleModelCommandHandler : IRequestHandler<DeleteSampleModelCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public IModelTypeRepository _modelTypeRepository;
-        private readonly ILogger<DeleteModelTypeCommandHandler> _logger;
-        public DeleteModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteModelTypeCommandHandler> logger, IModelTypeRepository modelTypeRepository)
+        public ISampleModelRepository _SampleModelRepository;
+        private readonly ILogger<DeleteSampleModelCommandHandler> _logger;
+        public DeleteSampleModelCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteSampleModelCommandHandler> logger, ISampleModelRepository SampleModelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _modelTypeRepository = modelTypeRepository ?? throw new ArgumentNullException(nameof(modelTypeRepository));
+            _SampleModelRepository = SampleModelRepository ?? throw new ArgumentNullException(nameof(SampleModelRepository));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(DeleteModelTypeCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(DeleteSampleModelCommand request, CancellationToken cancellationToken)
         {
             //return (
-            //    await _unitOfWork.ModelTypeRepository
-            //    .GetMatch(s => (s.GuidId.Equals(request.DeleteModelTypeDTO.guid)), null, cancellationToken))
-            //    .Match(Left: x => x, Right: x => _unitOfWork.ModelTypeRepository
+            //    await _unitOfWork.SampleModelRepository
+            //    .GetMatch(s => (s.GuidId.Equals(request.DeleteSampleModelDTO.guid)), null, cancellationToken))
+            //    .Match(Left: x => x, Right: x => _unitOfWork.SampleModelRepository
             //    .DeleteAsync(x, cancellationToken)
             //    .Result);
-            return await _modelTypeRepository.DeleteByGuidAsync(request.DeleteModelTypeDTO.guid, cancellationToken);
+            return await _SampleModelRepository.DeleteByGuidAsync(request.DeleteSampleModelDTO.guid, cancellationToken);
 
 
         }

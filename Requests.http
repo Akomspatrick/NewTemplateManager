@@ -1,10 +1,10 @@
 //create a sample post to localhost:5007
-//'http://localhost:5007/ModelType/PostEither
+//'http://localhost:5007/SampleModel/PostEither
 @baseUrl = http://localhost:5007/api/v1/
-@endpoint= ModelTypes
+@endpoint= SampleModels
 
 ###
-/// 1 GET ALL  ModelTypes QUERY 
+/// 1 GET ALL  SampleModels QUERY 
 ###
 GET {{baseUrl}}{{endpoint}}
 
@@ -12,12 +12,12 @@ GET {{baseUrl}}{{endpoint}}
 
 
 ###
-/// 2 GET SINGLE  ModelTypes QUERY with id
+/// 2 GET SINGLE  SampleModels QUERY with id
 ##
-GET {{baseUrl}}{{endpoint}}/FIRSTMODELTYPE
+GET {{baseUrl}}{{endpoint}}/FIRSTSampleModel
 ###
 
-///GET SINGLE  ModelTypes QUERY with GUID
+///GET SINGLE  SampleModels QUERY with GUID
 //Should Return 404 Not Found  "NOT FOUND : DataNotFoundInRepository A07"
 # {
 #   "problemDetails": {
@@ -26,24 +26,24 @@ GET {{baseUrl}}{{endpoint}}/FIRSTMODELTYPE
 #     "detail": "NOT FOUND : DataNotFoundInRepository A07"
 #   }
 ##
-/// 3 GET SINGLE  ModelTypes QUERY with wrong GUID
+/// 3 GET SINGLE  SampleModels QUERY with wrong GUID
 GET {{baseUrl}}{{endpoint}}/517720fe-a081-47a7-8510-6fdf4fb9636a
 ###
 
 
-/// 4 GET SINGLE  ModelTypes QUERY with GUID
+/// 4 GET SINGLE  SampleModels QUERY with GUID
 
 GET {{baseUrl}}{{endpoint}}/0cbf17be-bf38-ca5b-21a1-f36b0d7bec2d
 ###
 
 
-///5 GET SINGLE  ModelTypes QUERY with JsonBody
+///5 GET SINGLE  SampleModels QUERY with JsonBody
 ###
 GET {{baseUrl}}{{endpoint}}/JsonBody
 Content-Type: application/json
 
 {
-   "modelTypeName":"FIRSTMODELTYPE"
+   "SampleModelName":"FIRSTSampleModel"
 }
 
 ###
@@ -55,7 +55,7 @@ Content-Type: application/json
 
 {
   "guidId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "modelTypeName": "string1779"
+  "SampleModelName": "string1779"
 }
 
 
@@ -75,7 +75,7 @@ Content-Type: application/json
 
  {
     "guidId": "deb715ba-481b-4c5d-b6a5-8028ea4d9716",
-    "modelTypeName": "SECONDMODELTYPE-AA"
+    "SampleModelName": "SECONDSampleModel-AA"
   }
 
 
@@ -86,7 +86,7 @@ Content-Type: application/json
 
 
 //create a sample post to localhost:5007
-//'http://localhost:5007/ModelType/PostEither
+//'http://localhost:5007/SampleModel/PostEither
 @baseUrl = http://localhost:5007/api/v1/
 @endpoint11111= TestingModeGroups
 ###
@@ -123,7 +123,7 @@ GET {{baseUrl}}{{endpoint}}/JsonBody
 Content-Type: application/json
 
 {
- "modelTypeName": "string1779"
+ "SampleModelName": "string1779"
 }
 
 
@@ -143,7 +143,7 @@ DELETE  {{baseUrl}}{{endpoint}}/896a1843-57ef-4e56-b10e-8ac3fa57d34c
 Content-Type: application/json
 
 {
-  "modelTypeName": "NEW1hAhu1"
+  "SampleModelName": "NEW1hAhu1"
 }
 
 
@@ -165,59 +165,59 @@ Content-Type: application/json
 
 
 
-//GET SINGLE  MODELTYPE QUERY 
+//GET SINGLE  SampleModel QUERY 
 
-GET {{baseUrl}}/ModelTypes/ML-0011
+GET {{baseUrl}}/SampleModels/ML-0011
 ###
-//GET SINGLE  MODELTYPE QUERY 
-GET {{baseUrl}}/ModelTypes/FIRSTMODELTYPE
-
-###
-//GET SINGLE  MODELTYPE QUERY 
-GET {{baseUrl}}/ModelTypes/58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b
+//GET SINGLE  SampleModel QUERY 
+GET {{baseUrl}}/SampleModels/FIRSTSampleModel
 
 ###
-//GET SINGLE  MODELTYPE QUERY 
+//GET SINGLE  SampleModel QUERY 
+GET {{baseUrl}}/SampleModels/58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b
 
-GET {{baseUrl}}/ModelTypes/JsonBody
+###
+//GET SINGLE  SampleModel QUERY 
+
+GET {{baseUrl}}/SampleModels/JsonBody
 Content-Type: application/json
 
 {
-  "modelTypeName": "FIRSTMODELTYPE"
+  "SampleModelName": "FIRSTSampleModel"
 }
 
 
 
 
 ###
-///GET ALL  MODELTYPE QUERY 
-GET http://localhost:5007/api/ModelTypes
+///GET ALL  SampleModel QUERY 
+GET http://localhost:5007/api/SampleModels
 
 ###
-///GET ALL  MODELTYPE QUERY 
-GET http://localhost:5007/api/ModelType1
+///GET ALL  SampleModel QUERY 
+GET http://localhost:5007/api/SampleModel1
 
 
 ###
-// delete a modeltype
+// delete a SampleModel
 
-DELETE {{baseUrl}}ModelTypes/1d1741c7-7ff7-dde1-0bea-7bac5d25d30d
+DELETE {{baseUrl}}SampleModels/1d1741c7-7ff7-dde1-0bea-7bac5d25d30d
 ###
-PUT {{baseUrl}}/ModelType
+PUT {{baseUrl}}/SampleModel
 Content-Type: application/json
 
 {
-  "modelTypesId": "THIRDmodelTypesId",
-  "modelTypesName": "MODIFIED ML2"
+  "SampleModelsId": "THIRDSampleModelsId",
+  "SampleModelsName": "MODIFIED ML2"
 }
 ###
 //END OF MODEL TYPE 
 ###
 // START OF MODEL
-//GET ALL  MODELTYPE QUERY
+//GET ALL  SampleModel QUERY
 GET {{baseUrl}}/Models/
 ###
-//GET SINGLE  MODELTYPE QUERY 
+//GET SINGLE  SampleModel QUERY 
 // by JsonBody
 
 GET {{baseUrl}}/Models/JsonBody
@@ -245,12 +245,12 @@ Content-Type: application/json
 
 {
    "modelId": "FIRSTMODELID14",
-    "modelTypesId": "FIRSTmodelTypesId",
+    "SampleModelsId": "FIRSTSampleModelsId",
     "modelName": "FIRSTMODELNAME14"
 }
 
 ###
-// delete a modeltype
+// delete a SampleModel
 
 DELETE {{baseUrl}}/Model
 Content-Type: application/json
@@ -264,7 +264,7 @@ Content-Type: application/json
 
 {
   "modelId": "SECONDMODELID1",
-    "modelTypesId": "SECONDmodelTypesId",
+    "SampleModelsId": "SECONDSampleModelsId",
     "modelName": "WHAT A FUCK"
 }
 
@@ -279,7 +279,7 @@ POST http://localhost:5007/DocumentType
 Content-Type: application/json
 
 {
-  "modelTypesName": "stringxxx"
+  "SampleModelsName": "stringxxx"
 }
 
 ###

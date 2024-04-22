@@ -13,15 +13,15 @@ namespace NewTemplateManager.Domain.Entities
     public partial class ModelAggregateRoot : BaseEntity
     {
 
-        //public Model(string modelId, string modelName, string modelTypesId)
+        //public Model(string modelId, string modelName, string SampleModelsId)
         //{
         //    ModelId = modelId;
         //    ModelName = modelName;
-        //    modelTypesId = modelTypesId;
+        //    SampleModelsId = SampleModelsId;
         //}
 
 
-        // Meaning that modelTypesName may evetualy become modelTypesId
+        // Meaning that SampleModelsName may evetualy become SampleModelsId
         //private List<Document> _documents = Enumerable.Empty<Document>().ToList();
         //private List<CapacityDocument> _capacityDocuments = Enumerable.Empty<CapacityDocument>().ToList();
         //private List<Specification> _capacitySpecifications = Enumerable.Empty<Specification>().ToList();

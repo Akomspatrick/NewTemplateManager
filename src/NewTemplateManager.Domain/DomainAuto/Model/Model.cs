@@ -3,16 +3,16 @@ namespace NewTemplateManager.Domain.Entities
 {
     public partial class Model : BaseEntity
     {
-        //Left To make ModelType Work in the template
+        //Left To make SampleModel Work in the template
         private Model() { }
         public string ModelName { get; init; } = string.Empty;
-        public string ModelTypeName { get; init; } = string.Empty;
-        public ModelType? ModelType { get; init; }
+        public string SampleModelName { get; init; } = string.Empty;
+        public SampleModel? SampleModel { get; init; }
         //private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         //public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
         //// public Guid GuidId    { get; init; } 
 
-        public static Model Create(string modelName, string modelTypeName, Guid guidId)
+        public static Model Create(string modelName, string SampleModelName, Guid guidId)
         {
             if (guidId == Guid.Empty)
             {
@@ -21,7 +21,7 @@ namespace NewTemplateManager.Domain.Entities
             return new()
             {
                 ModelName = modelName,
-                ModelTypeName = modelTypeName,
+                SampleModelName = SampleModelName,
                 GuidId = guidId,
             };
         }
