@@ -3,7 +3,9 @@ using NewTemplateManager.Application;
 using NewTemplateManager.Infrastructure;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using DocumentVersionManager.Infrastructure;
+using NewTemplateManager.Infrastructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using NewTemplateManager.Infrastructure.Persistence;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -92,8 +94,8 @@ app.MapControllers();
 //    await ctx.Response.WriteAsync($"Hello World! from {useragent}");
 //});
 
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
-    // await TrySeedData.EnsureUsers(app);
+    await TrySeedData.EnsureUsers(app);
 }
 app.Run();

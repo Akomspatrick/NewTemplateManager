@@ -1,25 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Json;
 using System.Net;
-using NewTemplateManager.Api;
 using FluentAssertions;
 using Newtonsoft.Json;
-using LanguageExt.Pipes;
-using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Http.Headers;
-using ZXing.Aztec.Internal;
 using System.Text;
-using Bogus;
 using AutoBogus;
-using System.IO;
-using static System.Net.WebRequestMethods;
-using LanguageExt.Pretty;
 using NewTemplateManager.Api.Controllers;
 using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using NewTemplateManager.Integration.Tests.Base;
-using NewTemplateManager.Domain.Errors;
 
 namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
 {
@@ -86,8 +76,6 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
         public async Task Get_ModelTypeByJSONBody_ShouldRetunAnObjectOfTypeModelTypeEntity_WhenSuccesful(string path)
         {
             //arrange
-            // arrange 
-
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
@@ -115,44 +103,11 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
         }
 
 
-        //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "FIRSTMODELTYPE")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "")]
-        //public async Task GetResultShoulNotBeNullModelTypeShouldASingleModelType(string path, string item)
-        //{
-        //    // act
-        //    var response = await _httpClient.GetAsync(path + item);
-        //    //assert
-        //    Assert.NotNull(response);
-        //}
-
-
-        //[Theory]
-        //[InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/")]
-        //public async Task GetByIdModelTypeShouldASingleModelType(string path)
-        //{
-        //    //arrange
-        //    var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
-        //    ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
-        //    var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
-
-        //    // act
-        //    var response = await _httpClient.GetAsync($"{_baseUrl}{postresponse.Headers.Location?.OriginalString}");
-
-        //    var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
-
-        //    //assert
-        //    result.Should().BeAssignableTo<ModelTypeResponseDTO>();
-        //    result.ModelTypeName.Should().Be(modelTypeGetRequestDTO.ModelTypeName);
-        //}
-
-
-
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}/", "")]
         public async Task Get_ModelType_ShouldAListOfModelTypes_WhenThereAreDataIntheTable(string path, string item)
         {
+            //arrange
             var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var postresponse = await _httpClient.PostAsJsonAsync(path, modelTypeGetRequestDTO);
@@ -228,7 +183,6 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
             problemDetail.Title.Should().Contain("Error Adding entity  into to Repository");
             problemDetail.Type.Should().Be("A04");
         }
-        //Duplicate entry 'Handmade Fresh Tuna' for key 'ModelTypes.PRIMARY' 
 
         [Theory]
         [InlineData($"{NewTemplateManagerAPIEndPoints.ModelType.Controller}")]
@@ -296,16 +250,6 @@ namespace NewTemplateManager.Integration.Tests.v1.ModelTypesController
         public async Task DisposeAsync()
         {
 
-            //foreach (var headerLocation in headerLocations)
-            //{
-            //    try
-            //    {
-            //        _httpClient.DeleteAsync($"{_baseUrl}{headerLocation}");
-
-            //    }
-            //    catch (Exception) { }
-
-            //}
 
         }
     }

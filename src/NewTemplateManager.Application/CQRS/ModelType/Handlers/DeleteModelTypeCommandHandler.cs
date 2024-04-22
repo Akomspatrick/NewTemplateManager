@@ -28,6 +28,8 @@ namespace NewTemplateManager.Application.CQRS
             //    .DeleteAsync(x, cancellationToken)
             //    .Result);
             return await _modelTypeRepository.DeleteByGuidAsync(request.DeleteModelTypeDTO.guid, cancellationToken);
+
+
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿
 using NewTemplateManager.Domain.Entities;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -57,10 +56,10 @@ namespace NewTemplateManager.Infrastructure.Persistence
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw new Exception( "Error in Migration from TrySeeding  data: " + ex.Message);
                 }
             }
 

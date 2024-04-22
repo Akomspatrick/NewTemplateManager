@@ -6,7 +6,6 @@ using NewTemplateManager.Contracts.RequestDTO.V1;
 using NewTemplateManager.Contracts.ResponseDTO.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NewTemplateManager.Api.Extentions;
 using NewTemplateManager.Api.Extensions;
 namespace NewTemplateManager.Api.Controllers.V1
 {
@@ -30,7 +29,6 @@ namespace NewTemplateManager.Api.Controllers.V1
                 :
                  (_sender.Send(new GetModelTypeByIdQuery(new ModelTypeGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
-
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: NewTemplateManagerAPIEndPoints.ModelType.GetByJSONBody, Name = NewTemplateManagerAPIEndPoints.ModelType.GetByJSONBody)]

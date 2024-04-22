@@ -3,7 +3,7 @@
 namespace NewTemplateManager.BaseModels.Entities
 {
 
-    public class ModelType : BaseEntity
+    public class SampleModel : BaseEntity
     {
         [BaseModelBasicAttribute(32, 0, true, false)]
         public string ModelTypeName { get; private set; } = string.Empty;
@@ -25,7 +25,7 @@ namespace NewTemplateManager.BaseModels.Entities
 
         [BaseModelBasicAttribute(32, 0, false, true, false, true)]
         public string ModelTypeName { get; private set; } = string.Empty;
-        public ModelType? ModelType { get; set; }
+        public SampleModel? ModelType { get; set; }
 
 
         //   public ICollection<ModelVersion> ModelVersions { get; set; }
