@@ -16,7 +16,7 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            
+
         }
 
 
@@ -28,6 +28,7 @@ namespace NewTemplateManager.Application.CQRS.ModelType.Handlers
             //    .Match(Left: x => x, Right: x => _unitOfWork.ModelTypeRepository
             //    .DeleteAsync(x, cancellationToken)
             //    .Result);
+            // useless line 31 delete pls
             return await _unitOfWork.ModelTypeRepository.DeleteByGuidAsync(request.DeleteModelTypeDTO.guid, cancellationToken);
 
 
