@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3B2A5BC-8985-4298-A764-B35D892CD5A5}"
+	ProjectSection(SolutionItems) = preProject
+		src\docker-compose.yaml = src\docker-compose.yaml
+		src\Dockerfile = src\Dockerfile
+		src\NewTemplateManager.Api\Dockerfile = src\NewTemplateManager.Api\Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3AA6A05-372C-462C-9445-7D56AD1DD0C6}"
 	ProjectSection(SolutionItems) = preProject
