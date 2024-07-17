@@ -27,7 +27,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (DbUpdateException ex)
             {
                 return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString() + ex.Message);
-                      }
+            }
             catch (Exception ex)
             {
                 return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
@@ -89,7 +89,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemUpdatingEntityInRepository(entity.GuidId.ToString()+ ex.Message);
+                return GeneralFailures.ProblemUpdatingEntityInRepository(entity.GuidId.ToString() + ex.Message);
             }
 
         }
@@ -104,7 +104,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemDeletingEntityFromRepository(entity.GuidId.ToString()+ ex.Message);
+                return GeneralFailures.ProblemDeletingEntityFromRepository(entity.GuidId.ToString() + ex.Message);
             }
 
         }
@@ -121,7 +121,7 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString()+ ex.Message);
+                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString() + ex.Message);
             }
         }
 
@@ -252,11 +252,28 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
             catch (Exception ex)
             {
                 //Log this error properly
-                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString()+ ex.Message);
+                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString() + ex.Message);
             }
 
         }
-
+        public async Task<Either<GeneralFailure, int>> DeleteByQueryAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(expression, cancellationToken);
+                if (entity == null)
+                {
+                    return GeneralFailures.DataNotFoundInRepository("Requested data");
+                }
+                _ctx.Remove<T>(entity);
+                return await _ctx.SaveChangesAsync(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                //Log this error properly
+                return GeneralFailures.ProblemDeletingEntityFromRepository(ex.Message);
+            }
+        }
         //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
         //{
         //    try

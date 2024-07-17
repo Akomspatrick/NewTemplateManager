@@ -14,9 +14,11 @@ namespace NewTemplateManager.Api.Extensions
 
         private static IActionResult Match<L, R>(this Either<L, R> either)
         {
+
             return either.Match<IActionResult>(
-                Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(400, l).ProblemDetails),
+                Left: l => l.ToProblemDetails(),
                 Right: r => new OkObjectResult(r));
+
         }
 
         public static Task<IActionResult> ToEitherActionResult<L, R>(this Task<Either<L, R>> either)
@@ -27,7 +29,7 @@ namespace NewTemplateManager.Api.Extensions
         private static IActionResult MatchEitherActionResult<L, R>(this Either<L, R> either)
         {
             return either.Match<IActionResult>(
-                Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l).ProblemDetails),
+                Left: l => l.ToProblemDetails(),
                 Right: r => new OkObjectResult(r));
         }
 
@@ -38,8 +40,8 @@ namespace NewTemplateManager.Api.Extensions
 
         private static IActionResult MatchCreated<L, R>(this Either<L, R> either, string endPoint, object data)
         {
-            return either.Match<IActionResult>(
-                Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(409, l).ProblemDetails),
+            return either.Match(
+                Left: l => l.ToProblemDetails(),
                 Right: r => new CreatedResult($"{endPoint}/{r}", data));
         }
     }
