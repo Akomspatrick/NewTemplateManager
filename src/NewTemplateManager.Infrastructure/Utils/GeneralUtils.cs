@@ -12,7 +12,7 @@ namespace NewTemplateManager.Infrastructure.Utils
 
         public static MySqlServerVersion GetMySqlVersion()
         {
-            return new MySqlServerVersion(new Version(8, 0));
+            return new MySqlServerVersion(new Version(9, 0));
         }
     }
 }

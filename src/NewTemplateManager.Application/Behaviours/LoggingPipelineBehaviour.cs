@@ -58,7 +58,7 @@ namespace NewTemplateManager.Application.Behaviours
             {
                 var error = (GeneralFailure)theerror;
 
-              //  _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
+                //  _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
 
                 _logger.LogError("Request failure  {@RequestName} {@DateTimeUtc}  :, {@ErrorCode},{@ErrorType},{@ErrorDescription}", typeof(TRequest).Name, DateTime.UtcNow, error.Code, error.OriginalError, error.ErrorDescription);
 
@@ -76,7 +76,7 @@ namespace NewTemplateManager.Application.Behaviours
             try
             {
                 //var xxx = (GeneralFailure)result;
-                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName} :, {@ErrorCode},{@ErrorType},{@ErrorDescription} {@DateTimeUtc} was successful ", DateTime.UtcNow);
+                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName}  was successful ", typeof(TRequest).Name, typeof(TRequest).Name);
 
             }
             catch (Exception)
