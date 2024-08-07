@@ -274,6 +274,18 @@ namespace NewTemplateManager.Infrastructure.Persistence.Repositories
                 return GeneralFailures.ProblemDeletingEntityFromRepository(ex.Message);
             }
         }
+        public async Task<Either<GeneralFailure, int>> ExecuteQueryAsync(string query, IEnumerable<object> parameters, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var result = await _ctx.Database.ExecuteSqlRawAsync(query, parameters, cancellationToken);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return GeneralFailures.ExceptionThrown("GenericRepository-ExecuteQuery", "Problem Executing Query", ex?.InnerException?.Message);
+            }
+        }
         //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
         //{
         //    try

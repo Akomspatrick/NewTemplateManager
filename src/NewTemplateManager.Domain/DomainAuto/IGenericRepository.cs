@@ -15,6 +15,7 @@ namespace NewTemplateManager.Domain.Interfaces
         Task<Either<GeneralFailure, T>> GetByGuidAsync(Guid guid, CancellationToken cancellationToken = default);
         Task<Either<GeneralFailure, int>> DeleteByGuidAsync(Guid guid, CancellationToken cancellationToken = default);
         Task<Either<GeneralFailure, int>> DeleteByQueryAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default);
+        Task<Either<GeneralFailure, int>> ExecuteQueryAsync(string query, CancellationToken cancellationToken);
 
     }
 }
